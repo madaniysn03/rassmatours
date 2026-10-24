@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="320" viewBox="0 0 720 320" role="img" aria-labelledby="t d">
+  <title id="t">Rassma Tours, wordmark provisoire</title>
+  <desc id="d">Monogramme (soleil sur l'horizon du detroit) et nom en capitales serif, en deux versions : bleu nuit sur ivoire, ivoire sur bleu nuit.</desc>
+  <!-- Polices : Cormorant Garamond (nom) et Jost (TOURS). Si elles manquent, le navigateur utilise un serif / sans-serif de remplacement. -->
+  <rect width="720" height="160" fill="#F7F3EB"/>
+  <g transform="translate(60,40)">
+    <circle cx="22" cy="24" r="14" fill="none" stroke="#B4955B" stroke-width="3"/>
+    <path d="M0 48h44" stroke="#15243A" stroke-width="3" stroke-linecap="round"/>
+    <path d="M8 58h28" stroke="#B4955B" stroke-width="2.4" stroke-linecap="round" opacity=".8"/>
+    <text x="68" y="44" font-family="Cormorant Garamond, Georgia, serif" font-weight="600" font-size="52" letter-spacing="7" fill="#15243A">RASSMA</text>
+    <text x="70" y="70" font-family="Jost, Segoe UI, sans-serif" font-weight="500" font-size="15" letter-spacing="7" fill="#15243A" opacity=".8">TOURS</text>
+  </g>
+  <rect y="160" width="720" height="160" fill="#15243A"/>
+  <g transform="translate(60,200)">
+    <circle cx="22" cy="24" r="14" fill="none" stroke="#B4955B" stroke-width="3"/>
+    <path d="M0 48h44" stroke="#F7F3EB" stroke-width="3" stroke-linecap="round"/>
+    <path d="M8 58h28" stroke="#B4955B" stroke-width="2.4" stroke-linecap="round" opacity=".8"/>
+    <text x="68" y="44" font-family="Cormorant Garamond, Georgia, serif" font-weight="600" font-size="52" letter-spacing="7" fill="#F7F3EB">RASSMA</text>
+    <text x="70" y="70" font-family="Jost, Segoe UI, sans-serif" font-weight="500" font-size="15" letter-spacing="7" fill="#F7F3EB" opacity=".8">TOURS</text>
+  </g>
+</svg>

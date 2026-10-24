@@ -1,0 +1,194 @@
+{
+  "_note": "Mots-cles preliminaires (non valides par un outil de volumes). Source unique pour scripts/seo-keywords-check.mjs et la table de docs/seo-keyword-map.md.",
+  "pages": [
+    {
+      "path": "/",
+      "primary": "Tangier day trips from Spain",
+      "secondary": [
+        "private tours in Tangier",
+        "local guide",
+        "Tarifa",
+        "ferry",
+        "Chefchaouen"
+      ]
+    },
+    {
+      "path": "/tours/",
+      "primary": "Tangier tours and day trips",
+      "secondary": [
+        "guided tours in Tangier",
+        "private excursions",
+        "tailor-made Tangier tours",
+        "local guide",
+        "Chefchaouen"
+      ]
+    },
+    {
+      "path": "/tours/tangier-walking-tour/",
+      "primary": "Tangier walking tour",
+      "secondary": [
+        "private city tour",
+        "medina",
+        "Kasbah",
+        "souks",
+        "day trip from Spain"
+      ]
+    },
+    {
+      "path": "/tours/cap-spartel-hercules-caves/",
+      "primary": "Cap Spartel and Caves of Hercules tour",
+      "secondary": [
+        "camel ride",
+        "Tangier highlights",
+        "Atlantic",
+        "old town",
+        "lighthouse"
+      ]
+    },
+    {
+      "path": "/tours/asilah-day-trip/",
+      "primary": "Asilah day trip from Tangier",
+      "secondary": [
+        "Atlantic coast",
+        "ramparts",
+        "murals",
+        "medina",
+        "private tour"
+      ]
+    },
+    {
+      "path": "/tours/chefchaouen-day-trip/",
+      "primary": "Chefchaouen day trip from Tangier",
+      "secondary": [
+        "blue city",
+        "Rif Mountains",
+        "medina",
+        "private",
+        "local guide"
+      ]
+    },
+    {
+      "path": "/tours/tangier-food-tour/",
+      "primary": "Tangier food tour",
+      "secondary": [
+        "fish market",
+        "food souks",
+        "Moroccan spices",
+        "tastings",
+        "local specialities"
+      ]
+    },
+    {
+      "path": "/destinations/",
+      "primary": "day trip destinations from Tangier",
+      "secondary": [
+        "Tangier",
+        "Asilah",
+        "Chefchaouen",
+        "Fes",
+        "private transfers"
+      ]
+    },
+    {
+      "path": "/destinations/tangier/",
+      "primary": "things to do in Tangier",
+      "secondary": [
+        "medina",
+        "Kasbah",
+        "Grand Socco",
+        "Cap Spartel",
+        "Tarifa"
+      ]
+    },
+    {
+      "path": "/destinations/asilah/",
+      "primary": "Asilah Morocco",
+      "secondary": [
+        "ramparts",
+        "medina",
+        "murals",
+        "beach",
+        "day trip"
+      ]
+    },
+    {
+      "path": "/destinations/chefchaouen/",
+      "primary": "Chefchaouen",
+      "secondary": [
+        "blue city",
+        "Rif Mountains",
+        "two hours from Tangier",
+        "medina",
+        "day trip"
+      ]
+    },
+    {
+      "path": "/about/",
+      "primary": "local guides in Tangier",
+      "secondary": [
+        "private tours",
+        "Rassma Tours",
+        "languages",
+        "Morocco",
+        "hospitality"
+      ]
+    },
+    {
+      "path": "/contact/",
+      "primary": "book a private tour in Tangier",
+      "secondary": [
+        "WhatsApp",
+        "ferry",
+        "Tarifa",
+        "tailor-made",
+        "quote"
+      ]
+    },
+    {
+      "path": "/day-trips-from-spain/",
+      "primary": "Tangier day trip from Spain",
+      "secondary": [
+        "Tarifa",
+        "Algeciras",
+        "Marbella",
+        "Malaga",
+        "Seville",
+        "ferry",
+        "private guide"
+      ]
+    },
+    {
+      "path": "/day-trips-from-spain/tarifa/",
+      "primary": "Tangier day trip from Tarifa",
+      "secondary": [
+        "ferry",
+        "Tangier Ville",
+        "private guide",
+        "medina",
+        "one hour"
+      ]
+    },
+    {
+      "path": "/day-trips-from-spain/algeciras/",
+      "primary": "Tangier day trip from Algeciras",
+      "secondary": [
+        "Tanger Med",
+        "ferry",
+        "transfer",
+        "private guide",
+        "medina"
+      ]
+    },
+    {
+      "path": "/tangier-ferry-guide/",
+      "primary": "Tangier day trip with ferry",
+      "secondary": [
+        "Tarifa",
+        "Algeciras",
+        "Tanger Med",
+        "passport",
+        "Tangier Ville"
+      ]
+    }
+  ]
+}
