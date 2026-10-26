@@ -14,7 +14,7 @@ Nothing in this list has been done yet: no domain is verified, no sitemap submit
 
 1. Open https://search.google.com/search-console and add a **Domain** property for the production domain (covers http/https, www/apex).
 2. Verify via a DNS TXT record at the registrar (the "Domain" property only supports DNS verification). Alternative: a URL-prefix property verified with an HTML file placed in `public/` or a meta tag added to `index.html`.
-3. Submit the sitemap: `https://<domain>/sitemap.xml` (Sitemaps section). Expect 13 URLs.
+3. Submit the sitemap: `https://<domain>/sitemap.xml` (Sitemaps section). Expect 17 URLs.
 4. Use **URL Inspection** on `/`, `/tours/`, each tour, and `/destinations/chefchaouen/`: check "URL is on Google" after a few days, and "Test live URL" immediately to confirm the page is crawlable and the canonical is the expected one.
 5. If migrating from tangierbyguide.com to a new domain: verify both, keep the old one's redirects live for at least a year, and use **Settings → Change of address** on the old property.
 6. Review the **Pages** (indexing) report weekly for the first two months: "Excluded by noindex", "Duplicate without user-selected canonical", "Not found (404)" and "Redirect error" should all be empty except `/privacy/`.
@@ -34,7 +34,7 @@ Nothing in this list has been done yet: no domain is verified, no sitemap submit
 
 | Event | When | Parameters |
 |---|---|---|
-| `page_view` | each route change | `page_path`, `page_title` |
+| `page_view` | first page after consent, then each route change (the `config` call sends none, to avoid double counting; in GA4 → Data stream → Enhanced measurement, turn off "Page changes based on browser history events") | `page_location`, `page_title` |
 | `whatsapp_click` | any wa.me link (header, floating button, footer, tour page, contact, prepared request) | `page`, `label` |
 | `email_click` | any `mailto:` link | `page` |
 | `phone_click` | any `tel:` link | `page` |
@@ -63,7 +63,7 @@ Rassma Tours operates as a **service-area business**: it meets guests at hotels,
 
 ## 7. Post-launch actions (first 90 days)
 
-1. Week 1: confirm indexing of all 13 URLs, fix any crawl error, check the redirect from the old site.
+1. Week 1: confirm indexing of all 17 URLs, fix any crawl error, check the redirect from the old site.
 2. Week 2–4: collect first Search Console queries; adjust titles where impressions exist without clicks.
 3. Month 2: replace placeholder photos with original ones (file names already descriptive; add alt text in `src/data/images.ts`); then consider an image sitemap.
 4. Month 2–3: publish one editorial piece from `seo-content-plan.md` with original photography; add verified testimonials and prices if the client agrees.

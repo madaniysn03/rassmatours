@@ -20,7 +20,7 @@
 | `/destinations/` | Destinations index |
 | `/destinations/tangier/`, `/destinations/asilah/`, `/destinations/chefchaouen/` | Destination pages |
 | `/about/`, `/contact/` | About, Plan your trip |
-| `/privacy/` | Privacy (`noindex`, not in sitemap, disallowed in robots.txt as belt and braces) |
+| `/privacy/` | Privacy (`noindex`, not in sitemap; not disallowed in robots.txt, so crawlers can read the `noindex`) |
 | `/404.html` | Served with a 404 status for unknown paths |
 
 All routes are defined once in `src/routes.ts`, which feeds the prerender, the sitemap and the redirect files.

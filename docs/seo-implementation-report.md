@@ -20,9 +20,10 @@ No keyword tool or API was available, so `seo-keyword-map.md` is a **preliminary
 
 ### Crawling and indexability
 - `robots.txt` generated per environment; `VITE_NOINDEX=true` makes every page `noindex`, disallows crawling and empties the sitemap (staging safety).
-- Sitemap lists only indexable routes (13 URLs); `/privacy/` is `noindex` and excluded.
+- Sitemap lists only indexable routes (17 URLs since the Spain pages), without `lastmod` (the build date is not a content date); `/privacy/` is `noindex`, excluded from the sitemap, and left crawlable so the `noindex` can be read.
+- `noindex` pages (`/privacy/`, `404.html`, every page in staging) emit no canonical and no `og:url`.
 - `404.html` prerendered; hosts serve it with a 404 status (`_redirects` rule `/* /404.html 404`).
-- Build warns when `VITE_SITE_URL` is missing (placeholder domain would otherwise leak into canonicals).
+- Build fails when `VITE_SITE_URL` is missing or not an `https://` origin (placeholder domain would otherwise leak into canonicals), except for staging builds (`VITE_NOINDEX=true`).
 
 ### Metadata system (`src/lib/head.ts`)
 - One `useHead()` call per page: title (brand suffix added), description, canonical, robots (`max-image-preview:large`), Open Graph with image dimensions and alt, Twitter card, optional `hreflang` alternates, hero preload with `imagesrcset`/`imagesizes` (portrait and landscape variants), JSON-LD `@graph`.

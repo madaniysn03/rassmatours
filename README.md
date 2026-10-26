@@ -95,7 +95,7 @@ VITE_GA4_ID=                            # Google Analytics 4 (G-XXXXXXX). Vide :
 VITE_NOINDEX=                           # true sur un environnement de recette : noindex partout, robots.txt bloquant.
 ```
 
-Le build affiche un avertissement si `VITE_SITE_URL` manque et utilise alors le placeholder `https://rassmatours.com`, qui n'est pas un domaine réel.
+Le build **échoue** si `VITE_SITE_URL` manque ou n'est pas une origine `https://` sans chemin, sauf en recette (`VITE_NOINDEX=true`), où il continue avec le placeholder `https://rassmatours.com` (domaine non confirmé). Les variables sont lues telles que Vite les résout (`.env`, `.env.production` ou shell), de sorte que pages, `robots.txt` et sitemap concordent.
 
 ## Utilisation
 

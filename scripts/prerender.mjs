@@ -2,8 +2,8 @@
  * Prérendu statique : un index.html par route dans dist/, plus sitemap.xml, robots.txt et 404.html.
  * Lancé par `npm run build` après le build client (dist/) et le build SSR (dist-ssr/).
  *
- * Variables d’environnement lues au build :
- * - VITE_SITE_URL : domaine public (canonical, sitemap). Un avertissement est émis s’il manque.
+ * Variables d’environnement lues au build (résolues par Vite : .env, .env.production ou shell) :
+ * - VITE_SITE_URL : domaine public (canonical, sitemap). Obligatoire, sauf en recette : le build échoue sinon.
  * - VITE_NOINDEX=true : environnement de recette, tout est noindex et robots.txt interdit l’exploration.
  */
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
@@ -15,13 +15,22 @@ const dist = join(root, 'dist')
 const ssrEntry = join(root, 'dist-ssr', 'entry-server.js')
 
 const template = await readFile(join(dist, 'index.html'), 'utf8')
-const { render, staticPaths, legacyRedirects, siteConfig } = await import(pathToFileURL(ssrEntry).href)
+const { render, staticPaths, legacyRedirects, siteConfig, buildEnv } = await import(pathToFileURL(ssrEntry).href)
 
 const siteUrl = siteConfig.url.replace(/\/$/, '')
-const noindexAll = process.env.VITE_NOINDEX === 'true'
-if (!process.env.VITE_SITE_URL) {
-  console.warn(`\n[prerender] WARNING: VITE_SITE_URL is not set, using placeholder ${siteUrl}. Set it before a production build.\n`)
+const noindexAll = buildEnv.noindexAll
+
+// Un build indexable sans domaine explicite publierait des canonical vers l’URL de repli : on l’interdit.
+const siteUrlError = !buildEnv.siteUrl
+  ? 'VITE_SITE_URL is not set'
+  : !/^https:\/\/[a-z0-9.-]+\.[a-z]{2,}\/?$/i.test(buildEnv.siteUrl)
+    ? `VITE_SITE_URL must be an https origin without a path (got "${buildEnv.siteUrl}")`
+    : null
+if (siteUrlError && !noindexAll) {
+  console.error(`\n[prerender] ERROR: ${siteUrlError}. Set it to the production origin, or set VITE_NOINDEX=true for a staging build.\n`)
+  process.exit(1)
 }
+if (siteUrlError) console.warn(`\n[prerender] WARNING: ${siteUrlError}; staging build (VITE_NOINDEX=true) continues with ${siteUrl}.\n`)
 
 let count = 0
 for (const route of staticPaths) {
@@ -37,7 +46,8 @@ for (const route of staticPaths) {
 const notFound = render('/404')
 await writeFile(join(dist, '404.html'), template.replace('<!--app-head-->', notFound.head).replace('<!--app-html-->', notFound.html), 'utf8')
 
-const today = new Date().toISOString().slice(0, 10)
+// Pas de <lastmod> : la date du build n’est pas la date de modification du contenu,
+// et Google ignore un lastmod systématiquement inexact.
 const indexable = noindexAll ? [] : staticPaths.filter((r) => r.indexable)
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -45,7 +55,6 @@ ${indexable
   .map(
     (r) => `  <url>
     <loc>${siteUrl}${r.path}</loc>
-    <lastmod>${today}</lastmod>
     <changefreq>${r.changefreq}</changefreq>
     <priority>${r.priority}</priority>
   </url>`,
@@ -57,7 +66,8 @@ await writeFile(join(dist, 'sitemap.xml'), sitemap, 'utf8')
 
 const robots = noindexAll
   ? `# Environnement de recette : exploration interdite (VITE_NOINDEX=true)\nUser-agent: *\nDisallow: /\n`
-  : `User-agent: *\nAllow: /\nDisallow: /privacy/\n\nSitemap: ${siteUrl}/sitemap.xml\n`
+  : // /privacy/ reste explorable : un Disallow empêcherait Google de lire son noindex.
+    `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`
 await writeFile(join(dist, 'robots.txt'), robots, 'utf8')
 
 // Redirections pour Netlify (_redirects) ; vercel.json est maintenu à la racine du projet.

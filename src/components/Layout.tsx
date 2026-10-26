@@ -16,7 +16,7 @@ export function Layout() {
   }, [])
 
   useEffect(() => {
-    trackPageView(pathname)
+    trackPageView()
   }, [pathname])
 
   return (

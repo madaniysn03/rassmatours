@@ -133,19 +133,24 @@ export function useHead(data: HeadData) {
     setMeta('property', 'og:image:width', String(img.width))
     setMeta('property', 'og:image:height', String(img.height))
     setMeta('property', 'og:image:alt', img.alt)
-    setMeta('property', 'og:url', url)
+    setMeta('property', 'og:url', noindex ? null : url)
     setMeta('name', 'twitter:card', 'summary_large_image')
     setMeta('name', 'twitter:title', fullTitle(data.title))
     setMeta('name', 'twitter:description', data.description)
     setMeta('name', 'twitter:image', absoluteUrl(img.src))
-    setLink('canonical', url)
+    setLink('canonical', noindex ? null : url)
     const ld = buildJsonLd(data)
     setJsonLd(ld)
   }, [data])
 }
 
-function setMeta(attr: 'name' | 'property', key: string, content: string) {
+/** `null` retire la balise (page noindex atteinte par navigation client). */
+function setMeta(attr: 'name' | 'property', key: string, content: string | null) {
   let el = document.head.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`)
+  if (content === null) {
+    el?.remove()
+    return
+  }
   if (!el) {
     el = document.createElement('meta')
     el.setAttribute(attr, key)
@@ -154,8 +159,12 @@ function setMeta(attr: 'name' | 'property', key: string, content: string) {
   el.content = content
 }
 
-function setLink(rel: string, href: string) {
+function setLink(rel: string, href: string | null) {
   let el = document.head.querySelector<HTMLLinkElement>(`link[rel="${rel}"]`)
+  if (href === null) {
+    el?.remove()
+    return
+  }
   if (!el) {
     el = document.createElement('link')
     el.rel = rel
@@ -190,11 +199,12 @@ export function renderHeadTags(data: HeadData): string {
   const title = fullTitle(data.title)
   const img = ogImage(data)
   const url = absoluteUrl(data.path)
+  // Page noindex : pas de canonical ni d’og:url (signal contradictoire, et /404 n’est pas une URL réelle).
   const tags = [
     `<title>${escapeHtml(title)}</title>`,
     `<meta name="description" content="${escapeHtml(data.description)}" />`,
     `<meta name="robots" content="${noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'}" />`,
-    `<link rel="canonical" href="${url}" />`,
+    ...(noindex ? [] : [`<link rel="canonical" href="${url}" />`]),
     ...(data.alternates ?? []).map((a) => `<link rel="alternate" hreflang="${a.lang}" href="${absoluteUrl(a.path)}" />`),
     `<meta property="og:type" content="website" />`,
     `<meta property="og:locale" content="en_US" />`,
@@ -205,7 +215,7 @@ export function renderHeadTags(data: HeadData): string {
     `<meta property="og:image:width" content="${img.width}" />`,
     `<meta property="og:image:height" content="${img.height}" />`,
     `<meta property="og:image:alt" content="${escapeHtml(img.alt)}" />`,
-    `<meta property="og:url" content="${url}" />`,
+    ...(noindex ? [] : [`<meta property="og:url" content="${url}" />`]),
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:title" content="${escapeHtml(title)}" />`,
     `<meta name="twitter:description" content="${escapeHtml(data.description)}" />`,

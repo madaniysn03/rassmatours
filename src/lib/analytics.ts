@@ -47,7 +47,11 @@ export function saveConsent(value: Exclude<Consent, null>) {
   } catch {
     // Stockage indisponible (navigation privée) : le choix ne vaut que pour la session.
   }
-  if (value === 'granted') loadGa4()
+  if (value === 'granted') {
+    loadGa4()
+    // La page courante n’a pas été comptée (GA n’était pas chargé lors de la navigation).
+    trackPageView()
+  }
   listeners.forEach((l) => l())
 }
 
@@ -63,7 +67,8 @@ export function loadGa4() {
   }
   window.gtag('consent', 'default', { analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' })
   window.gtag('js', new Date())
-  window.gtag('config', GA4_ID, { anonymize_ip: true, send_page_view: true })
+  // Pages vues envoyées uniquement par trackPageView : sinon la première page est comptée deux fois.
+  window.gtag('config', GA4_ID, { anonymize_ip: true, send_page_view: false })
   const script = document.createElement('script')
   script.async = true
   script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA4_ID)}`
@@ -75,9 +80,9 @@ export function initAnalytics() {
   if (readConsent() === 'granted') loadGa4()
 }
 
-/** Page vue lors des navigations internes (GA4 ne les voit pas seul dans une SPA). */
-export function trackPageView(path: string) {
-  window.gtag?.('event', 'page_view', { page_path: path, page_location: window.location.href, page_title: document.title })
+/** Page vue : premier affichage et navigations internes (GA4 ne voit pas seul celles d’une SPA). */
+export function trackPageView() {
+  window.gtag?.('event', 'page_view', { page_location: window.location.href, page_title: document.title })
 }
 
 export type ConversionEvent = 'whatsapp_click' | 'email_click' | 'phone_click' | 'cta_click' | 'generate_lead'

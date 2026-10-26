@@ -28,6 +28,10 @@ let noAlt = 0
 let noDims = 0
 const sitemap = existsSync(join(dist, 'sitemap.xml')) ? readFileSync(join(dist, 'sitemap.xml'), 'utf8') : ''
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1])
+const robotsTxt = existsSync(join(dist, 'robots.txt')) ? readFileSync(join(dist, 'robots.txt'), 'utf8') : ''
+const indexableRoutes = []
+const noindexRoutes = []
+const canonicalOrigins = new Set()
 
 for (const p of pages) {
   const html = readFileSync(p, 'utf8')
@@ -77,8 +81,33 @@ for (const p of pages) {
     if (!sitemapUrls.some((u) => u.endsWith(route))) issues.push(`${route}: indexable page missing from sitemap`)
   }
   if (!is404 && !indexable && sitemapUrls.some((u) => u.endsWith(route))) issues.push(`${route}: noindex page listed in sitemap`)
+  if (!indexable && canonical) issues.push(`${route}: noindex page declares a canonical (${canonical})`)
+  if (!indexable && /property="og:url"/.test(html)) issues.push(`${route}: noindex page declares og:url`)
+  if (indexable) indexableRoutes.push(route)
+  else noindexRoutes.push(route)
+  if (canonical) canonicalOrigins.add(new URL(canonical).origin)
   console.log(`${route.padEnd(36)} title=${String(title.length).padStart(2)}ch desc=${String(desc.length).padStart(3)}ch h1=${h1} ld=${ldBlocks.length} ${robots.padEnd(16)} ${canonical}`)
 }
+
+// robots.txt, sitemap et balises robots doivent raconter la même histoire.
+const disallows = [...robotsTxt.matchAll(/^Disallow:\s*(\S+)/gim)].map((m) => m[1])
+const blocksAll = disallows.includes('/')
+if (!robotsTxt) issues.push('robots.txt: missing')
+if (blocksAll && indexableRoutes.length) issues.push(`robots.txt: Disallow: / while ${indexableRoutes.length} pages are indexable`)
+if (!blocksAll && indexableRoutes.length === 0) issues.push('robots.txt: crawling allowed but every page is noindex (staging build?)')
+if (blocksAll && sitemapUrls.length) issues.push('sitemap.xml: lists URLs while robots.txt blocks everything')
+for (const r of noindexRoutes) {
+  const blocking = disallows.find((d) => d !== '/' && r.startsWith(d))
+  if (blocking) issues.push(`robots.txt: Disallow: ${blocking} hides the noindex of ${r} from crawlers`)
+}
+if (!blocksAll && !/^Sitemap:\s*https:\/\//im.test(robotsTxt)) issues.push('robots.txt: no absolute Sitemap line')
+const lastmods = [...sitemap.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((m) => m[1])
+if (lastmods.length > 1 && new Set(lastmods).size === 1) issues.push(`sitemap.xml: every lastmod is ${lastmods[0]} (build date, not content date)`)
+for (const u of sitemapUrls) {
+  if (!u.startsWith('https://')) issues.push(`sitemap.xml: non-https URL ${u}`)
+  else if (canonicalOrigins.size && !canonicalOrigins.has(new URL(u).origin)) issues.push(`sitemap.xml: ${u} not on the canonical origin`)
+}
+if (canonicalOrigins.size > 1) issues.push(`canonicals use several origins: ${[...canonicalOrigins].join(', ')}`)
 
 console.log(`\n${pages.length} pages, ${sitemapUrls.length} sitemap URLs, ${totalLinks} internal links (${badLinks} broken), ${imgs} img tags (${noAlt} without alt, ${noDims} without width/height)`)
 console.log(issues.length ? `ISSUES (${issues.length}):\n${issues.join('\n')}` : 'No issues')
