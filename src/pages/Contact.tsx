@@ -2,11 +2,11 @@ import { Link, useSearchParams } from 'react-router'
 import { PageHero } from '../components/PageHero'
 import { InquiryForm } from '../components/InquiryForm'
 import { Faq } from '../components/Faq'
-import { ArrowUpRightIcon, MailIcon, PhoneIcon, WhatsAppIcon } from '../components/Icons'
+import { ArrowUpRightIcon, MailIcon, MessageIcon, PhoneIcon, WhatsAppIcon } from '../components/Icons'
 import { images } from '../data/images'
 import { siteConfig } from '../data/site'
-import { faq } from '../data/faq'
-import { mailtoLink, telLink, whatsappLink } from '../lib/contact-links'
+import { practicalFaq } from '../data/faq'
+import { mailtoLink, smsLink, telLink, whatsappLink } from '../lib/contact-links'
 import { useHead } from '../lib/head'
 
 export function Contact() {
@@ -34,7 +34,7 @@ export function Contact() {
         height="short"
         title={
           <>
-            Book a private tour in Tangier: <em className="font-display-italic">let’s plan your days</em>
+            Book a private tour: <em className="font-display-italic">let’s plan your days</em>
           </>
         }
         text="A few details are enough to get started. We reply within a day with a proposal and a quote."
@@ -69,7 +69,18 @@ export function Contact() {
                       <PhoneIcon size={18} />
                     </span>
                     <span className="flex-1">
-                      <span className="block text-[12px] uppercase tracking-[0.18em] text-ink-mute">Phone</span>
+                      <span className="block text-[12px] uppercase tracking-[0.18em] text-ink-mute">Call</span>
+                      <span className="block font-display text-xl">{contact.phoneDisplay}</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href={smsLink} className="group flex items-center gap-4 rounded-2xl bg-paper p-5 shadow-card transition-colors hover:bg-sand/60">
+                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sand text-midnight">
+                      <MessageIcon size={18} />
+                    </span>
+                    <span className="flex-1">
+                      <span className="block text-[12px] uppercase tracking-[0.18em] text-ink-mute">SMS</span>
                       <span className="block font-display text-xl">{contact.phoneDisplay}</span>
                     </span>
                   </a>
@@ -115,7 +126,7 @@ export function Contact() {
               <div className="mt-9 rounded-2xl border border-line p-6">
                 <h3 className="font-display text-2xl">Coming from Spain?</h3>
                 <p className="mt-2 text-[15px] text-ink-soft" style={{ fontWeight: 300 }}>
-                  Many of our guests cross for the day from Tarifa or Algeciras. We help with ferry tickets, meet you at the port and plan the day around your crossing times. See our guide to <Link to="/day-trips-from-spain/" className="underline underline-offset-4">Tangier day trips from Spain</Link>.
+                  The best way to make it from southern Spain is to take a ferry from Tarifa to the Tangier city port. We can help you choose the best ferry schedule for your time and your tour. See our guide to <Link to="/day-trips-from-spain/" className="underline underline-offset-4">Tangier day trips from Spain</Link>.
                 </p>
               </div>
             </div>
@@ -125,7 +136,10 @@ export function Contact() {
 
       <section className="bg-paper py-16 lg:py-24">
         <div className="wrap-narrow">
-          <Faq items={faq} title="Frequently asked questions" />
+          <Faq items={practicalFaq} title="Frequently asked questions" />
+          <Link to="/faq/" className="link-line mt-8 text-ink">
+            All our FAQ, including coming from Spain
+          </Link>
         </div>
       </section>
     </>

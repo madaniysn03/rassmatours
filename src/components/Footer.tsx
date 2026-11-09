@@ -2,7 +2,7 @@ import { Link } from 'react-router'
 import { siteConfig } from '../data/site'
 import { tours } from '../data/tours'
 import { destinations } from '../data/destinations'
-import { mailtoLink, telLink, whatsappLink } from '../lib/contact-links'
+import { mailtoLink, smsLink, telLink, whatsappLink } from '../lib/contact-links'
 import { Wordmark } from './Wordmark'
 import { Ticker } from './Ticker'
 import { ArrowUpRightIcon } from './Icons'
@@ -64,6 +64,11 @@ export function Footer() {
               </Link>
             </li>
             <li>
+              <Link to="/faq/" className="text-ivory/85 transition-colors hover:text-ivory">
+                FAQ
+              </Link>
+            </li>
+            <li>
               <Link to="/contact/" className="text-ivory/85 transition-colors hover:text-ivory">
                 Plan your trip
               </Link>
@@ -86,6 +91,11 @@ export function Footer() {
               </a>
             </li>
             <li>
+              <a href={smsLink} className="text-ivory/85 hover:text-ivory">
+                SMS {contact.phoneDisplay}
+              </a>
+            </li>
+            <li>
               <a href={mailtoLink()} className="text-ivory/85 hover:text-ivory">
                 {contact.email}
               </a>
@@ -101,15 +111,17 @@ export function Footer() {
               </li>
             ))}
           </ul>
-          <a
-            href={siteConfig.tripadvisorUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-line mt-6 text-ivory/85 hover:text-ivory"
-          >
-            Reviews on TripAdvisor
-            <ArrowUpRightIcon size={14} />
-          </a>
+          {siteConfig.tripadvisorUrl && (
+            <a
+              href={siteConfig.tripadvisorUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-line mt-6 text-ivory/85 hover:text-ivory"
+            >
+              Reviews on TripAdvisor
+              <ArrowUpRightIcon size={14} />
+            </a>
+          )}
           {siteConfig.googleBusinessProfileUrl && (
             <a href={siteConfig.googleBusinessProfileUrl} target="_blank" rel="noopener noreferrer" className="link-line mt-3 block text-ivory/85 hover:text-ivory">
               Find us on Google

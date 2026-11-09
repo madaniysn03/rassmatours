@@ -7,7 +7,7 @@ import { CtaBand } from '../components/CtaBand'
 import { Button } from '../components/Button'
 import { images } from '../data/images'
 import { additionalServices, tours, type TourCategory } from '../data/tours'
-import { faq } from '../data/faq'
+import { practicalFaq } from '../data/faq'
 import { useHead } from '../lib/head'
 
 type Filter = 'all' | TourCategory
@@ -115,7 +115,7 @@ export function Tours() {
 
       <section className="py-20 lg:py-28">
         <div className="wrap-narrow">
-          <Faq items={faq} title="Before you book" />
+          <Faq items={practicalFaq} title="Before you book" />
         </div>
       </section>
 

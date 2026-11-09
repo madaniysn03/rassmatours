@@ -92,7 +92,7 @@ function SpainCityPage({ city: c }: { city: NonNullable<ReturnType<typeof getSpa
                 <li>Help choosing sailings and buying ferry tickets if you wish, and port accompaniment.</li>
                 <li>Private air-conditioned vehicle on tours that leave the old town (Cap Spartel, Caves of Hercules).</li>
               </ul>
-              <p className="note mt-5">The ferry ticket, entrance fees, meals and gratuities are not part of the tour unless your quote says so. Prices are confirmed with your quote; payment in cash on the day.</p>
+              <p className="note mt-5">The ferry ticket, entrance fees, meals and gratuities are not part of the tour unless your quote says so. Prices are confirmed with your quote; payment in cash, in dirhams or euros, at the end of the tour.</p>
             </div>
           </div>
 

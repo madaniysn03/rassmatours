@@ -25,6 +25,11 @@ export function TourCard({ tour, layout = 'portrait', index = 0 }: TourCardProps
       <Link to={href} className="img-zoom block overflow-hidden rounded-2xl" tabIndex={-1} aria-hidden>
         <SmartImage image={image} className={ratio} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
       </Link>
+      {tour.bestseller && (
+        <span className="pointer-events-none absolute left-4 top-4 rounded-full bg-ivory px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-[0.2em] text-ink shadow-sm">
+          Bestseller
+        </span>
+      )}
       <div className="flex flex-1 flex-col pt-5">
         <div className="flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.2em] text-brass">
           <span>{category}</span>

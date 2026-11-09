@@ -8,6 +8,8 @@ export const whatsappLink = (message?: string) => {
 
 export const telLink = `tel:${siteConfig.contact.phoneE164}`
 
+export const smsLink = `sms:${siteConfig.contact.phoneE164}`
+
 export const mailtoLink = (subject?: string, body?: string) => {
   const params = new URLSearchParams()
   if (subject) params.set('subject', subject)

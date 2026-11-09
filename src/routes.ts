@@ -18,6 +18,7 @@ export const staticPaths: StaticRoute[] = [
   ...spainCities.filter((c) => c.hasPage).map((c) => ({ path: `/day-trips-from-spain/${c.slug}/`, priority: 0.8, changefreq: 'monthly', indexable: true })),
   { path: '/tangier-ferry-guide/', priority: 0.8, changefreq: 'monthly', indexable: true },
   { path: '/about/', priority: 0.6, changefreq: 'monthly', indexable: true },
+  { path: '/faq/', priority: 0.7, changefreq: 'monthly', indexable: true },
   { path: '/contact/', priority: 0.8, changefreq: 'monthly', indexable: true },
   { path: '/privacy/', priority: 0.1, changefreq: 'yearly', indexable: false },
 ]

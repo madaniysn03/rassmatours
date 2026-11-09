@@ -88,7 +88,7 @@ export const destinations: Destination[] = [
     ],
     practical: [
       { label: 'Getting there', text: 'About 45 kilometres south of Tangier along the coast, around 45 minutes by car. We drive you there and back in a private vehicle.' },
-      { label: 'Time needed', text: 'Half a day is enough for the medina, the ramparts and lunch; the full excursion lasts 4 to 6 hours from Tangier.' },
+      { label: 'Time needed', text: 'Half a day is enough for the medina, the ramparts and lunch; the full excursion lasts 5 to 6 hours from Tangier.' },
       { label: 'When to come', text: 'Any season; the summer arts festival brings crowds and new murals, the rest of the year the town is very quiet.' },
     ],
     faqs: [
@@ -125,14 +125,14 @@ export const destinations: Destination[] = [
       { name: 'The viewpoints', text: 'Paths above the town with views of the medina against the mountains.' },
     ],
     practical: [
-      { label: 'Getting there', text: 'About 115 kilometres from Tangier, two to two and a half hours by road through the Rif. The day trip lasts 7 to 9 hours door to door.' },
+      { label: 'Getting there', text: 'About 115 kilometres from Tangier, two to two and a half hours by road through the Rif. The day trip lasts about 7 hours door to door.' },
       { label: 'Altitude and weather', text: 'The town sits around 600 metres above sea level: cooler than the coast, bring a layer outside summer.' },
-      { label: 'Time needed', text: 'A full day from Tangier gives four to five hours in town for the medina, lunch, the shops and a viewpoint.' },
+      { label: 'Time needed', text: 'The day trip from Tangier gives two to three hours in town for the medina, lunch, the shops and a viewpoint.' },
     ],
     faqs: [
       {
         question: 'Can I visit Chefchaouen as a day trip from Tangier?',
-        answer: 'Yes, it is the classic day trip from Tangier: a full day of 7 to 9 hours with a private driver and guide, including four to five hours in the town itself.',
+        answer: 'Yes, it is the classic day trip from Tangier: about 7 hours with a private driver and guide, including two to three hours in the town itself.',
       },
       {
         question: 'Why is Chefchaouen blue?',

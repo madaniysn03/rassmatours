@@ -202,7 +202,7 @@ export const ferryGuide = {
     { title: 'Passport', text: 'A valid passport is required to enter Morocco; a national identity card is not enough. Check the entry rules for your nationality before you travel, and bring the passport you booked with.' },
     { title: 'Which port', text: 'Make sure your ticket says Tangier Ville (city) for the Tarifa route. Tanger Med is a different port, 45 km away.' },
     { title: 'Timing', text: 'Allow time for check-in and passport control on both sides. Morocco’s clock can differ from Spain’s by up to an hour depending on the season and Ramadan: check the local time when you land.' },
-    { title: 'Money', text: 'Morocco uses the dirham. Cards are accepted in some places, but cash is useful in the medina and our tours are paid in cash on the day.' },
+    { title: 'Money', text: 'Morocco uses the dirham. Cards are accepted in some places, but cash is useful in the medina and our tours are paid in cash, in dirhams or euros, at the end of the tour.' },
     { title: 'Return', text: 'Choose your return sailing when you book the outbound one, and tell us the time: we bring you back to the terminal with a margin.' },
   ],
   faqs: [

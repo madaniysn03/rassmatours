@@ -16,7 +16,7 @@ import { destinations } from '../data/destinations'
 import { siteConfig } from '../data/site'
 import { useHead } from '../lib/head'
 
-const featured = ['tangier-walking-tour', 'cap-spartel-hercules-caves', 'chefchaouen-day-trip']
+const featured = ['cap-spartel-hercules-caves', 'tangier-walking-tour', 'chefchaouen-day-trip']
   .map((slug) => tours.find((t) => t.slug === slug)!)
 
 /** Atouts réels de l’agence, tels que publiés sur le site existant. */
@@ -62,10 +62,10 @@ export function Home() {
         height="tall"
         title={
           <>
-            Tangier day trips from Spain, <em className="font-display-italic">personally</em> guided.
+            Enjoy Tangier and Morocco in a <em className="font-display-italic">relaxed</em>, easy and comfortable way.
           </>
         }
-        text="Private tours in Tangier led by local guides who know the city as home. Cross from Tarifa for the day or stay longer: the medina, Cap Spartel and the Caves of Hercules, Asilah and Chefchaouen. One group, one guide, your pace."
+        text="Rassma Tours is a local tour company based in Tangier, Morocco. We’ll provide you with the best possible service and tours. Our guides are attentively selected, our transport is modern and air conditioned, our drivers are caring and professional and, most importantly, our tours are 100% stress free."
       >
         <Button to="/tours/" variant="light" size="lg" data-cta="hero_explore_tours">
           Explore our tours
@@ -91,9 +91,8 @@ export function Home() {
             />
             <div className="prose-editorial reveal mt-8 max-w-xl">
               <p>
-                We are a team of local guides in Tangier, and we run private tours and day trips of the city we love: the
-                medina and the Kasbah, the coast where two seas meet, the markets, the cafés, and the excursions to Asilah and
-                Chefchaouen that make northern Morocco worth more than a stopover.
+                Tangier is far more enjoyable when you have some professionals on the ground paying attention to the very
+                small details that make your experience in Morocco truly exceptional. At Rassma Tours, your comfort is our joy.
               </p>
               <p>
                 Every tour we run is private. You travel with your own guide and your own driver, in your language, at the
@@ -105,7 +104,7 @@ export function Home() {
                 About us
               </Button>
               <Link to="/tours/" className="link-line text-ink">
-                Our five Tangier tours
+                Our tours
                 <ArrowRightIcon size={15} />
               </Link>
             </div>
@@ -148,11 +147,11 @@ export function Home() {
       <section className="bg-midnight py-24 text-ivory lg:py-32" aria-labelledby="why-title">
         <div className="wrap">
           <SectionHeading
-            eyebrow="Why travel with us"
+            eyebrow="Rassma Tours"
             tone="ivory"
             align="center"
-            title={<span id="why-title">Why travel with a local guide in Tangier</span>}
-            text="What stays the same whichever experience you choose."
+            title={<span id="why-title">Why travel with us</span>}
+            text="Our tours are 100% stress free, carefully designed to suit your wishes, preferences and time constraints. Our transportation is modern and air-conditioned, driven by professional drivers, and our guides are fully accredited by the Ministry of Tourism, knowledgeable and highly skilled."
           />
           <ul className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
             {pillars.map((p, i) => (

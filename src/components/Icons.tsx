@@ -60,6 +60,13 @@ export const PhoneIcon = ({ size = 18, ...props }: IconProps) => (
   </svg>
 )
 
+export const MessageIcon = ({ size = 18, ...props }: IconProps) => (
+  <svg {...base(size, props)}>
+    <path d="M4.5 5.5h15a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4.5 3.5V16.5h-1a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1Z" />
+    <path d="M8 10h8M8 13h5" />
+  </svg>
+)
+
 export const MailIcon = ({ size = 18, ...props }: IconProps) => (
   <svg {...base(size, props)}>
     <rect x="3.5" y="5.5" width="17" height="13" rx="2" />

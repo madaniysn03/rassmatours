@@ -11,6 +11,7 @@ import { FerryGuide } from './pages/FerryGuide'
 import { About } from './pages/About'
 import { Contact } from './pages/Contact'
 import { Privacy } from './pages/Privacy'
+import { FaqPage } from './pages/FaqPage'
 import { NotFound } from './pages/NotFound'
 
 /** Redirection client des anciennes URL /experiences/* (les hébergeurs font la même chose en 301). */
@@ -34,6 +35,7 @@ export default function App() {
         <Route path="day-trips-from-spain/:slug" element={<SpainCity />} />
         <Route path="tangier-ferry-guide" element={<FerryGuide />} />
         <Route path="about" element={<About />} />
+        <Route path="faq" element={<FaqPage />} />
         <Route path="contact" element={<Contact />} />
         <Route path="privacy" element={<Privacy />} />
         <Route path="experiences" element={<Navigate to="/tours/" replace />} />

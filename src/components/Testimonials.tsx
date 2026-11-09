@@ -41,12 +41,14 @@ export function Testimonials() {
           </ul>
         )}
 
-        <p className="reveal mt-10 text-center">
-          <a href={siteConfig.tripadvisorUrl} target="_blank" rel="noopener noreferrer" className="link-line text-ink">
-            Read reviews on TripAdvisor
-            <ArrowUpRightIcon size={14} />
-          </a>
-        </p>
+        {siteConfig.tripadvisorUrl && (
+          <p className="reveal mt-10 text-center">
+            <a href={siteConfig.tripadvisorUrl} target="_blank" rel="noopener noreferrer" className="link-line text-ink">
+              Read reviews on TripAdvisor
+              <ArrowUpRightIcon size={14} />
+            </a>
+          </p>
+        )}
       </div>
     </section>
   )

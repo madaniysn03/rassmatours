@@ -9,7 +9,7 @@ import { SpainNotes } from '../components/SpainNotes'
 import { ArrowRightIcon, CarIcon, CheckIcon, ClockIcon, LanguageIcon, PinIcon, UsersIcon, WhatsAppIcon } from '../components/Icons'
 import { getTour, tours } from '../data/tours'
 import { destinations } from '../data/destinations'
-import { faq } from '../data/faq'
+import { practicalFaq } from '../data/faq'
 import { siteConfig } from '../data/site'
 import { absoluteUrl, useHead } from '../lib/head'
 import { tourInquiryMessage, whatsappLink } from '../lib/contact-links'
@@ -83,6 +83,7 @@ function TourPage({ tour }: { tour: NonNullable<ReturnType<typeof getTour>> }) {
           </div>
           <span className="enter eyebrow mt-8 mb-5" style={{ '--enter-delay': '140ms' } as React.CSSProperties}>
             {category}
+            {tour.bestseller && ' · Bestseller'}
           </span>
           <h1 className="enter display-lg max-w-4xl" style={{ '--enter-delay': '220ms' } as React.CSSProperties}>
             {tour.headline}
@@ -212,7 +213,7 @@ function TourPage({ tour }: { tour: NonNullable<ReturnType<typeof getTour>> }) {
                   Ask on WhatsApp
                 </Button>
               </div>
-              <p className="note mt-5">Prices are confirmed with your quote. Payment in cash on the day; a deposit may be requested for some excursions.</p>
+              <p className="note mt-5">Prices are confirmed with your quote. Payment in cash, in dirhams or euros, at the end of the tour; a deposit is required for some tours and dates.</p>
             </div>
           </aside>
         </div>
@@ -264,7 +265,7 @@ function TourPage({ tour }: { tour: NonNullable<ReturnType<typeof getTour>> }) {
               </ul>
             </div>
             <div className="mt-14">
-              <Faq items={[...tour.faqs, ...faq.slice(0, 3)]} title={`Questions about the ${tour.ref}`} eyebrow="Questions" />
+              <Faq items={[...tour.faqs, ...practicalFaq.slice(0, 3)]} title={`Questions about the ${tour.ref}`} eyebrow="Questions" />
             </div>
           </div>
           <div className="lg:col-span-5">

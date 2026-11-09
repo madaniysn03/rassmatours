@@ -13,7 +13,7 @@ export const siteConfig = {
   brand: {
     name: 'Rassma Tours',
     /** Signature : direction créative à affiner avec le client. */
-    tagline: 'Discover Tangier, Personally.',
+    tagline: 'Rassma Tours… it’s more than just a tour.',
     /** Chemin vers un logo officiel si le client en fournit un (sinon wordmark typographique). */
     logo: null as string | null,
   },
@@ -40,9 +40,12 @@ export const siteConfig = {
     /** Point de rendez-vous : convenu à la réservation (hôtel, port, terminal ferry). À confirmer par le client. */
     meetingPoint: 'Agreed when you book: your hotel in Tangier, the port or the ferry terminal.',
   },
-  /** Seul lien externe vérifié : fiche TripAdvisor liée depuis le site existant. */
-  tripadvisorUrl:
-    'https://www.tripadvisor.com/Attraction_Review-g293737-d17702022-Reviews-Tangier_Discovery_Tours-Tangier_Tanger_Tetouan_Al_Hoceima.html',
+  /**
+   * Fiche TripAdvisor : masquée à la demande du client (novembre 2026). Ancienne fiche liée depuis le site existant :
+   * https://www.tripadvisor.com/Attraction_Review-g293737-d17702022-Reviews-Tangier_Discovery_Tours-Tangier_Tanger_Tetouan_Al_Hoceima.html
+   * Renseigner l’URL ici pour réafficher les liens (avis, pied de page, données structurées).
+   */
+  tripadvisorUrl: null as string | null,
   /** Fiche Google Business Profile : à renseigner une fois vérifiée (lien « hasMap » et pied de page). */
   googleBusinessProfileUrl: null as string | null,
   /** Réseaux sociaux : aucun lien vérifié (le site existant affiche des icônes sans URL). */
@@ -53,6 +56,7 @@ export const siteConfig = {
     { label: 'From Spain', href: '/day-trips-from-spain/' },
     { label: 'Destinations', href: '/destinations/' },
     { label: 'About', href: '/about/' },
+    { label: 'FAQ', href: '/faq/' },
     { label: 'Contact', href: '/contact/' },
   ],
   seo: {

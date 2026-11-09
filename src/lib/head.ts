@@ -62,7 +62,7 @@ export const organizationNode = () => ({
     { '@type': 'City', name: 'Chefchaouen' },
   ],
   availableLanguage: siteConfig.languages,
-  sameAs: [siteConfig.tripadvisorUrl, ...siteConfig.social.map((s) => s.href)],
+  sameAs: [siteConfig.tripadvisorUrl, ...siteConfig.social.map((s) => s.href)].filter(Boolean),
   ...(siteConfig.googleBusinessProfileUrl ? { hasMap: siteConfig.googleBusinessProfileUrl } : {}),
 })
 

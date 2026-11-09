@@ -29,7 +29,7 @@ const howWeWork = [
   ['In your language', `Our guides speak ${siteConfig.languages.join(', ')}.`],
   ['Comfortable and safe', 'Private, modern, air-conditioned vehicles with accredited guides and drivers.'],
   ['Simple to arrange', `A message on WhatsApp or through our form is enough. ${siteConfig.contact.responseTime}`],
-  ['Straightforward payment', 'Cash in dirhams on the day; a deposit may be requested for some excursions.'],
+  ['Straightforward payment', 'Cash in dirhams or euros at the end of the tour; a deposit is required for some tours and dates.'],
 ]
 
 export function About() {
@@ -79,7 +79,7 @@ export function About() {
               </p>
               <p>
                 From the beginning we have chosen to offer authentic, personalised experiences, with attention to service
-                and to every detail of your day. Our team is made up of experienced local guides who are passionate about
+                and to every detail of your day. Our team is made up of experienced local professionals who are passionate about
                 their culture and heritage, and who speak several languages so that nothing stands between you and the
                 place.
               </p>
