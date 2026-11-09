@@ -6,7 +6,7 @@ Le site a été construit uniquement avec les informations publiées sur tangier
 
 - ☐ **Rapport entre « Rassma Tours » et « Tangier By Guide »** : nouveau nom, deux marques, rachat ? Le site affiche partout Rassma Tours mais utilise le téléphone, l'e-mail et les témoignages de Tangier By Guide. ⚠ ✎ `src/data/site.ts`.
 - ☐ **Logo** (SVG/PNG, versions claire et sombre). ⚠ Wordmark typographique provisoire + monogramme. ✎ `brand.logo` dans `src/data/site.ts`, `public/favicon.svg`, `src/components/Wordmark.tsx`.
-- ☐ **Signature** « Discover Tangier, Personally. » : à confirmer ou affiner. ✎ `brand.tagline`.
+- ☐ **Signature** « Enjoy Morocco, Your Way. » : à confirmer ou affiner. ✎ `brand.tagline`.
 - ☐ **Palette et typographies** proposées (voir `DESIGN_DIRECTION.md`) : direction créative, pas une charte officielle. ✎ `src/styles/index.css`.
 - ☐ **Nom de domaine** : `https://rassmatours.com` est un **placeholder** utilisé pour canonical, sitemap et Open Graph. ✎ `.env` → `VITE_SITE_URL`.
 

@@ -4,7 +4,7 @@ Date : 20 octobre 2026. Document de référence pour la cohérence visuelle du s
 
 ## 1. Positionnement
 
-**Rassma Tours — Discover Tangier, Personally.**
+**Rassma Tours — Enjoy Morocco, Your Way.**
 
 Trois qualités à faire ressentir dès le premier écran :
 
@@ -60,7 +60,9 @@ Règle : jamais plus d'une couleur d'accent par bloc ; le laiton ne sert qu'aux 
 
 ## 7. Identité graphique
 
-Pas de logo officiel fourni : wordmark typographique « RASSMA / TOURS » avec un monogramme minimal (cercle sur une ligne d'horizon : le soleil sur le détroit). Favicon dérivé. À remplacer par le logo du client via `brand.logo` dans `src/data/site.ts`.
+Symbole « Le Détroit » : l'étoile marocaine à huit branches (khatam), pleine, fendue de la pointe ouest (Atlantique) à la pointe est (Méditerranée) par un canal qui se resserre au centre comme le détroit ; le soleil, réservé en négatif avec un disque laiton, se lève au-dessus de cet horizon. Nom « RASSMA » en Cormorant Garamond 600, « TOURS » en Jost 500 très espacé, signature « Enjoy Morocco, Your Way » en Cormorant italique.
+
+Fichiers dans `public/images/brand/` (logo principal, horizontal, symbole, monochrome, versions ivoire, avatar), favicon dans `public/favicon.svg`. Tout est généré par `scripts/generate-logo.py` (texte vectorisé, aucune police requise) ; planche de présentation et pistes explorées dans `docs/brand/`. Coupe « petite taille » (canal et anneau plus ouverts) pour le favicon. `public/images/brand/rassma-tours-wordmark.svg` est l'ancien wordmark provisoire, conservé pour mémoire.
 
 ## 8. Ce qu'on évite
 

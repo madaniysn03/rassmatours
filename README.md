@@ -115,7 +115,7 @@ Tout le contenu éditable vit dans `src/data/` ; les pages se mettent à jour au
 | Routes, sitemap, redirections | `src/routes.ts` |
 | Métadonnées d'une page | l'appel `useHead(...)` dans `src/pages/<Page>.tsx` |
 
-Ajouter un tour : une entrée de plus dans `tours` avec un `slug` unique. Remplacer le wordmark par le logo officiel : déposer le fichier dans `public/images/brand/` et renseigner `brand.logo` dans `src/data/site.ts`.
+Ajouter un tour : une entrée de plus dans `tours` avec un `slug` unique. Logo : symbole et fichiers dans `public/images/brand/`, régénérés par `python3 scripts/generate-logo.py` (prérequis : `pip install fonttools brotli uharfbuzz`) ; planche de présentation dans `docs/brand/logo-presentation.html`. Pour utiliser un autre fichier, renseigner `brand.logo` dans `src/data/site.ts`.
 
 ### Remplacer les images
 
@@ -172,6 +172,7 @@ rassmatours/
 │   ├── seo-keywords.json      # Mots-clés par page (source unique)
 │   ├── seo-keywords-check.mjs # Vérifie les mots-clés dans dist/ et met à jour la keyword map
 │   ├── image-variants.sh      # Variantes responsives et WebP
+│   ├── generate-logo.py       # Logo, symbole et favicon en SVG vectoriel
 │   ├── image-catalog.py       # CSV de provenance des images
 │   └── fetch-fonts.py         # Téléchargement des polices
 ├── src/
