@@ -60,13 +60,13 @@ export function Header() {
           </Link>
 
           <nav aria-label="Main navigation" className="hidden lg:block">
-            <ul className="flex items-center gap-9">
+            <ul className="flex items-center gap-6 xl:gap-9">
               {siteConfig.nav.map((item) => (
                 <li key={item.href}>
                   <NavLink
                     to={item.href}
                     className={({ isActive }) =>
-                      `link-line rounded-sm ${isActive ? 'after:scale-x-100' : ''}`
+                      `link-line whitespace-nowrap rounded-sm ${isActive ? 'after:scale-x-100' : ''}`
                     }
                   >
                     {item.label}
@@ -86,7 +86,7 @@ export function Header() {
             >
               <WhatsAppIcon size={18} />
             </a>
-            <Button to="/contact/" size="sm" variant={solid ? 'midnight' : 'light'} data-cta="header_plan_trip">
+            <Button to="/contact/" size="sm" variant={solid ? 'midnight' : 'light'} className="whitespace-nowrap" data-cta="header_plan_trip">
               Plan your trip
             </Button>
           </div>

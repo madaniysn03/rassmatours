@@ -115,7 +115,7 @@ Tout le contenu éditable vit dans `src/data/` ; les pages se mettent à jour au
 | Routes, sitemap, redirections | `src/routes.ts` |
 | Métadonnées d'une page | l'appel `useHead(...)` dans `src/pages/<Page>.tsx` |
 
-Ajouter un tour : une entrée de plus dans `tours` avec un `slug` unique. Logo : symbole et fichiers dans `public/images/brand/`, régénérés par `python3 scripts/generate-logo.py` (prérequis : `pip install fonttools brotli uharfbuzz`) ; planche de présentation dans `docs/brand/logo-presentation.html`. Pour utiliser un autre fichier, renseigner `brand.logo` dans `src/data/site.ts`.
+Ajouter un tour : une entrée de plus dans `tours` avec un `slug` unique. Logo : fichier officiel du client détouré dans `public/images/brand/` (`logo-horizontal-navy|ivory` pour l'en-tête et le pied de page via `src/components/Wordmark.tsx`, `logo-symbol-*`, `logo-full-*`) ; favicons `public/favicon-32.png`, `favicon-48.png`, `apple-touch-icon.png`, `icon-512.png`. Les anciennes planches de `docs/brand/` montrent le logo précédent.
 
 ### Remplacer les images
 

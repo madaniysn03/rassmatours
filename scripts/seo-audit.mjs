@@ -56,7 +56,7 @@ for (const p of pages) {
   noDims += imgTags.filter((t) => !/ width="/.test(t) || !/ height="/.test(t)).length
   const links = [...html.matchAll(/href="(\/[^"#?]*)/g)].map((m) => m[1])
   for (const l of links) {
-    if (/^\/(images|assets|fonts|favicon)/.test(l)) continue
+    if (/^\/(images|assets|fonts|video|favicon|apple-touch-icon|icon-)/.test(l)) continue
     totalLinks++
     const ok = routes.has(l) || routes.has(`${l}/`) || routes.has(l.replace(/\/$/, ''))
     if (!ok) {

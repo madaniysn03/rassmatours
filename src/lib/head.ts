@@ -51,7 +51,7 @@ export const organizationNode = () => ({
   '@id': `${siteConfig.url}/#organization`,
   name: siteConfig.brand.name,
   url: `${siteConfig.url}/`,
-  logo: { '@type': 'ImageObject', url: absoluteUrl('/favicon.svg') },
+  logo: { '@type': 'ImageObject', url: absoluteUrl(siteConfig.brand.logo), width: 986, height: 909 },
   image: absoluteUrl(DEFAULT_OG.src),
   telephone: siteConfig.contact.phoneE164,
   email: siteConfig.contact.email,

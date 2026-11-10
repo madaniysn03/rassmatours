@@ -14,8 +14,8 @@ export const siteConfig = {
     name: 'Rassma Tours',
     /** Signature : direction créative à affiner avec le client. */
     tagline: 'Rassma Tours… it’s more than just a tour.',
-    /** Chemin vers un logo officiel si le client en fournit un (sinon wordmark typographique). */
-    logo: null as string | null,
+    /** Logo complet sur fond ivoire (données structurées). Versions détourées dans public/images/brand/logo-*. */
+    logo: '/images/brand/logo-full-ivory-bg.png',
   },
   /**
    * URL publique, sans slash final : canonical, sitemap, Open Graph, données structurées.
