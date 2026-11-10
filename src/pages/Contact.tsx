@@ -34,7 +34,7 @@ export function Contact() {
         height="short"
         title={
           <>
-            Book a private tour: <em className="font-display-italic">let’s plan your days</em>
+            Book a private tour in Tangier: <em className="font-display-italic">let’s plan your days</em>
           </>
         }
         text="A few details are enough to get started. We reply within a day with a proposal and a quote."

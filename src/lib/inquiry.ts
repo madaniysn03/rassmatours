@@ -1,6 +1,7 @@
 /**
  * Formulaire de demande : validation côté client, message pré-rempli pour WhatsApp / e-mail,
- * et envoi optionnel vers un point de terminaison HTTP (VITE_INQUIRY_ENDPOINT).
+ * et envoi HTTP : par défaut vers /api/inquiry (Netlify Function, messages lisibles dans /admin/),
+ * ou vers VITE_INQUIRY_ENDPOINT s'il est défini.
  */
 export type InquiryValues = {
   name: string
@@ -65,7 +66,7 @@ export function formatInquiry(values: InquiryValues): string {
   return lines.join('\n')
 }
 
-export const inquiryEndpoint = (import.meta.env.VITE_INQUIRY_ENDPOINT as string | undefined) || ''
+export const inquiryEndpoint = (import.meta.env.VITE_INQUIRY_ENDPOINT as string | undefined) || '/api/inquiry'
 
 /** Envoi HTTP si un point de terminaison est configuré. Lève une erreur sinon ou en cas d’échec. */
 export async function submitInquiry(values: InquiryValues): Promise<void> {

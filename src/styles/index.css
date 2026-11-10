@@ -189,6 +189,42 @@
   .ticker:hover {
     animation-play-state: paused;
   }
+  /* Galerie défilante (page Tours) : la piste contient deux copies, d'où le -50 %. */
+  .gallery-marquee__row {
+    overflow: hidden;
+  }
+  .gallery-marquee__track {
+    display: flex;
+    width: max-content;
+    animation: ticker var(--marquee-duration, 70s) linear infinite;
+  }
+  .gallery-marquee__track--reverse {
+    animation-direction: reverse;
+  }
+  .gallery-marquee__row:hover .gallery-marquee__track {
+    animation-play-state: paused;
+  }
+  .gallery-marquee__tile {
+    height: 13rem;
+    margin-right: 1rem;
+  }
+  @media (min-width: 1024px) {
+    .gallery-marquee__tile {
+      height: 20rem;
+      margin-right: 1.25rem;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .gallery-marquee__row {
+      overflow-x: auto;
+    }
+    .gallery-marquee__track {
+      animation: none;
+    }
+    .gallery-marquee__tile[aria-hidden='true'] {
+      display: none;
+    }
+  }
   @media (prefers-reduced-motion: reduce) {
     .ticker {
       animation: none;

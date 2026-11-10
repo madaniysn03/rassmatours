@@ -24,7 +24,8 @@ type InquiryFormProps = {
 
 /**
  * Formulaire de demande.
- * - Avec VITE_INQUIRY_ENDPOINT : envoi HTTP, confirmation à l’écran.
+ * - Envoi HTTP vers /api/inquiry (ou VITE_INQUIRY_ENDPOINT), confirmation à l’écran ; en cas d’échec,
+ *   le visiteur peut renvoyer sa demande par WhatsApp ou e-mail.
  * - Sans : le message est préparé et l’utilisateur l’envoie en un clic via WhatsApp ou e-mail.
  */
 export function InquiryForm({ defaultTour = '' }: InquiryFormProps) {

@@ -7,7 +7,7 @@ import { absoluteUrl, useHead } from '../lib/head'
 
 export function FaqPage() {
   useHead({
-    title: 'FAQ: Tangier Day Trips from Spain & Private Tours',
+    title: 'FAQ: Tangier Day Trips from Spain & Tours',
     description:
       'Answers to common questions about a Tangier day trip from southern Spain: the Tarifa ferry, visas, currency, payment, transfers and our private tours.',
     path: '/faq/',

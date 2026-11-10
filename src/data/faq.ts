@@ -47,12 +47,15 @@ export const spainFaq: FaqItem[] = [
 ]
 
 /** Questions pratiques. */
+/** Réponse propre à Tangier : retirée des excursions (Asilah, Chefchaouen), où les clients sont déjà au Maroc. */
+export const dirhamsFaq: FaqItem = {
+  question: 'Do we need to bring Moroccan dirhams (MAD) with us?',
+  answer:
+    'Tangier is very popular with day trippers who visit from Tarifa and return the same day, so most restaurants, cafés and shops are used to taking euros and credit cards.',
+}
+
 export const practicalFaq: FaqItem[] = [
-  {
-    question: 'Do we need to bring Moroccan dirhams (MAD) with us?',
-    answer:
-      'Tangier is very popular with day trippers who visit from Tarifa and return the same day, so most restaurants, cafés and shops are used to taking euros and credit cards.',
-  },
+  dirhamsFaq,
   {
     question: 'How does payment work?',
     answer:

@@ -59,6 +59,17 @@ export const images = {
   herculesCavesSea: portrait('landmarks/hercules-caves-sea', 'Waves breaking at the mouth of the Caves of Hercules', 'cosoproductions'),
   herculesCavesSilhouette: landscape('landmarks/hercules-caves-silhouette', 'A visitor in silhouette at the entrance of the cave, looking out to sea', 'youssmub'),
   camelsBeach: landscape('landmarks/camels-beach', 'A line of camels walking along a wide Atlantic beach', 'helixgames'),
+  // Photo originale de Rassma Tours (fournie par le client).
+  camelRideGuests: landscape('landmarks/camel-ride-guests', 'A group of smiling guests on camels with arms raised, on an Atlantic beach near Tangier under a clear blue sky', 'Rassma Tours'),
+  // Photo originale du client, petite (640 x 480) : à utiliser en vignette, pas en plein écran.
+  guestsOldMountain: {
+    src: '/images/landmarks/guests-old-mountain-viewpoint.jpg',
+    src900: '/images/landmarks/guests-old-mountain-viewpoint.jpg',
+    alt: 'Smiling guests with their Rassma Tours guide at a viewpoint on the Old Mountain, the Strait of Gibraltar behind them',
+    width: 640,
+    height: 480,
+    credit: 'Rassma Tours',
+  },
   camelRide: portrait('landmarks/camel-ride', 'A rider on a camel at the water’s edge on a sandy beach', 'andri77'),
   coastRocks: landscape('landmarks/coast-rocks', 'Rocky coastline with green scrub above a calm sea', 'theemanofoth'),
   bayFromBeach: landscape('landmarks/bay-from-beach', 'Waves rolling onto the beach with the white city of Tangier in the distance', 'les_trippers'),

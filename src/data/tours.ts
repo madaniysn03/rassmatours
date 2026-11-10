@@ -41,6 +41,8 @@ export type Tour = {
   image: ImageAsset
   imagePortrait: ImageAsset
   gallery: ImageAsset[]
+  /** Images de la galerie affichées en large (16/10, deux colonnes) en plus de la première. */
+  galleryWide?: ImageAsset[]
   destinationSlugs: string[]
   relatedSlugs: string[]
   seo: { title: string; description: string }
@@ -55,7 +57,7 @@ export const tours: Tour[] = [
   {
     slug: 'cap-spartel-hercules-caves',
     name: 'Tangier Day Trip: Cap Spartel, Camel Ride, Old Town and Local Markets',
-    headline: 'Tangier Day Trip: Cap Spartel, Camel Ride, Old Town and Local Markets',
+    headline: 'Cap Spartel and Caves of Hercules Tour: Camel Ride, Old Town and Markets',
     ref: 'Tangier day trip',
     shortName: 'Tangier Day Trip',
     category: 'tangier',
@@ -86,6 +88,10 @@ export const tours: Tour[] = [
     goodToKnow: [PRIVATE, VEHICLE, LANGUAGES, CRUISE],
     faqs: [
       {
+        question: 'Can we include a camel ride by the beach in our tour?',
+        answer: 'Yes, we can arrange a camel ride upon your request.',
+      },
+      {
         question: 'How far is Cap Spartel from the centre of Tangier?',
         answer: 'About 14 kilometres west of the city, roughly 20 to 30 minutes by car through the Old Mountain. The Caves of Hercules are a few minutes further along the coast.',
       },
@@ -100,7 +106,8 @@ export const tours: Tour[] = [
     ],
     image: images.capSpartelSunset,
     imagePortrait: images.herculesCavesWindow,
-    gallery: [images.camelsBeach, images.herculesCavesSilhouette, images.capSpartelLighthouse, images.camelRide, images.kasbahWalls, images.coastRocks],
+    gallery: [images.camelRideGuests, images.herculesCavesSilhouette, images.capSpartelLighthouse, images.camelRide, images.kasbahWalls, images.coastRocks, images.guestsOldMountain],
+    galleryWide: [images.guestsOldMountain],
     destinationSlugs: ['tangier'],
     relatedSlugs: ['tangier-walking-tour', 'asilah-day-trip'],
     seo: {
@@ -165,7 +172,7 @@ export const tours: Tour[] = [
   {
     slug: 'tangier-food-tour',
     name: 'Moroccan Food Tour in Tangier',
-    headline: 'Moroccan Food Tour in Tangier',
+    headline: 'Tangier Food Tour: a Taste of Moroccan Cuisine',
     ref: 'Tangier food tour',
     shortName: 'Food Tour',
     category: 'tangier',
@@ -211,7 +218,7 @@ export const tours: Tour[] = [
   {
     slug: 'asilah-day-trip',
     name: 'Enjoy Asilah from Tangier',
-    headline: 'Enjoy Asilah from Tangier',
+    headline: 'Enjoy an Asilah Day Trip from Tangier',
     ref: 'Asilah day trip',
     shortName: 'Asilah Day Trip',
     category: 'excursion',
@@ -266,7 +273,7 @@ export const tours: Tour[] = [
   {
     slug: 'chefchaouen-day-trip',
     name: 'Chefchaouen Excursion from Tangier',
-    headline: 'Chefchaouen Excursion from Tangier',
+    headline: 'Chefchaouen Day Trip from Tangier',
     ref: 'Chefchaouen day trip',
     shortName: 'Chefchaouen Day Trip',
     category: 'excursion',

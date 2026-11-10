@@ -19,3 +19,10 @@
 
 [context.branch-deploy.environment]
   VITE_NOINDEX = "true"
+
+# Développement local avec les Netlify Functions et Blobs : `npx netlify dev` (http://localhost:8888).
+[dev]
+  command = "npm run dev"
+  targetPort = 5173
+  port = 8888
+  framework = "#custom"

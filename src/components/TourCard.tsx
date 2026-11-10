@@ -41,7 +41,7 @@ export function TourCard({ tour, layout = 'portrait', index = 0 }: TourCardProps
         </div>
         <h3 className="mt-3 text-2xl leading-tight sm:text-[1.7rem]">
           <Link to={href} className="after:absolute after:inset-0 after:rounded-2xl focus-visible:outline-none">
-            {tour.headline}
+            {tour.name}
           </Link>
         </h3>
         <p className="mt-2.5 text-[15px] leading-relaxed text-ink-soft" style={{ fontWeight: 300 }}>

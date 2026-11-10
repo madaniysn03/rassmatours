@@ -58,14 +58,15 @@ export function Home() {
       <PageHero
         image={images.heroTangierBay}
         imagePortrait={images.heroTangierBayPortrait}
-        eyebrow={`${siteConfig.brand.tagline} · ${siteConfig.contact.city}, ${siteConfig.contact.country}`}
+        eyebrow={siteConfig.brand.tagline}
         height="tall"
+        lead="Tangier day trips from Spain & private tours"
         title={
           <>
             Enjoy Tangier and Morocco in a <em className="font-display-italic">relaxed</em>, easy and comfortable way.
           </>
         }
-        text="Rassma Tours is a local tour company based in Tangier, Morocco. We’ll provide you with the best possible service and tours. Our guides are attentively selected, our transport is modern and air conditioned, our drivers are caring and professional and, most importantly, our tours are 100% stress free."
+        text="Rassma Tours is a local tour company based in Tangier, Morocco. We provide the best possible service and tours. Our guides are attentively selected, our transport is modern and air conditioned, our drivers are caring and professional and, most importantly, our tours are 100% private and stress free."
       >
         <Button to="/tours/" variant="light" size="lg" data-cta="hero_explore_tours">
           Explore our tours

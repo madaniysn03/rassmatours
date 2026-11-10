@@ -31,7 +31,7 @@ export function Footer() {
             {tours.map((t) => (
               <li key={t.slug}>
                 <Link to={`/tours/${t.slug}/`} className="text-ivory/85 transition-colors hover:text-ivory">
-                  {t.headline}
+                  {t.name}
                 </Link>
               </li>
             ))}

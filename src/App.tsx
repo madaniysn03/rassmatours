@@ -13,6 +13,7 @@ import { Contact } from './pages/Contact'
 import { Privacy } from './pages/Privacy'
 import { FaqPage } from './pages/FaqPage'
 import { NotFound } from './pages/NotFound'
+import { Admin } from './pages/Admin'
 
 /** Redirection client des anciennes URL /experiences/* (les hébergeurs font la même chose en 301). */
 function LegacyTourRedirect() {
@@ -24,6 +25,8 @@ function LegacyTourRedirect() {
 export default function App() {
   return (
     <Routes>
+      {/* Administration : hors du gabarit public (pas d’en-tête ni de pied de page). */}
+      <Route path="admin" element={<Admin />} />
       <Route element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="tours" element={<Tours />} />

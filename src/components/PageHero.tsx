@@ -8,6 +8,8 @@ type PageHeroProps = {
   imagePortrait?: ImageAsset
   eyebrow?: string
   title: ReactNode
+  /** Ligne courte placée en tête du H1 (mot-clé), affichée en petit au-dessus du titre. */
+  lead?: string
   text?: ReactNode
   children?: ReactNode
   /** Hauteur : `tall` pour la page d’accueil, `short` pour les pages intérieures. */
@@ -16,7 +18,7 @@ type PageHeroProps = {
 }
 
 /** Visuel d’ouverture plein cadre, sombre vers le bas pour la lisibilité du texte. */
-export function PageHero({ image, imagePortrait, eyebrow, title, text, children, height = 'medium', align = 'left' }: PageHeroProps) {
+export function PageHero({ image, imagePortrait, eyebrow, lead, title, text, children, height = 'medium', align = 'left' }: PageHeroProps) {
   const h =
     height === 'tall'
       ? 'min-h-[100svh]'
@@ -36,6 +38,7 @@ export function PageHero({ image, imagePortrait, eyebrow, title, text, children,
           </span>
         )}
         <h1 className={`enter max-w-4xl ${height === 'tall' ? 'display-xl' : 'display-lg'}`} style={{ '--enter-delay': '160ms' } as React.CSSProperties}>
+          {lead && <span className="eyebrow-plain mb-5 block font-sans !text-ivory/80">{lead}</span>}
           {title}
         </h1>
         {text && (

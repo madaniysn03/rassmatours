@@ -9,7 +9,7 @@ import { SpainNotes } from '../components/SpainNotes'
 import { ArrowRightIcon, CarIcon, CheckIcon, ClockIcon, LanguageIcon, PinIcon, UsersIcon, WhatsAppIcon } from '../components/Icons'
 import { getTour, tours } from '../data/tours'
 import { destinations } from '../data/destinations'
-import { practicalFaq } from '../data/faq'
+import { dirhamsFaq, practicalFaq } from '../data/faq'
 import { siteConfig } from '../data/site'
 import { absoluteUrl, useHead } from '../lib/head'
 import { tourInquiryMessage, whatsappLink } from '../lib/contact-links'
@@ -240,7 +240,7 @@ function TourPage({ tour }: { tour: NonNullable<ReturnType<typeof getTour>> }) {
               <SmartImage
                 key={img.src}
                 image={img}
-                className={`reveal-image rounded-2xl ${i === 0 ? 'col-span-2 aspect-[16/10] md:col-span-2' : 'aspect-[4/5] md:aspect-[4/5]'}`}
+                className={`reveal-image rounded-2xl ${i === 0 || tour.galleryWide?.includes(img) ? 'col-span-2 aspect-[16/10] md:col-span-2' : 'aspect-[4/5] md:aspect-[4/5]'}`}
                 sizes="(min-width: 768px) 33vw, 50vw"
               />
             ))}
@@ -265,7 +265,7 @@ function TourPage({ tour }: { tour: NonNullable<ReturnType<typeof getTour>> }) {
               </ul>
             </div>
             <div className="mt-14">
-              <Faq items={[...tour.faqs, ...practicalFaq.slice(0, 3)]} title={`Questions about the ${tour.ref}`} eyebrow="Questions" />
+              <Faq items={[...tour.faqs, ...practicalFaq.slice(0, 3).filter((q) => tour.category !== 'excursion' || q !== dirhamsFaq)]} title={`Questions about the ${tour.ref}`} eyebrow="Questions" />
             </div>
           </div>
           <div className="lg:col-span-5">

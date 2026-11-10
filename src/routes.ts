@@ -21,6 +21,7 @@ export const staticPaths: StaticRoute[] = [
   { path: '/faq/', priority: 0.7, changefreq: 'monthly', indexable: true },
   { path: '/contact/', priority: 0.8, changefreq: 'monthly', indexable: true },
   { path: '/privacy/', priority: 0.1, changefreq: 'yearly', indexable: false },
+  { path: '/admin/', priority: 0, changefreq: 'yearly', indexable: false },
 ]
 
 /** Anciennes URL (v1 du site et site existant) redirigées de façon permanente. */

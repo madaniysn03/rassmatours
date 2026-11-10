@@ -1,10 +1,13 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { PageHero } from '../components/PageHero'
 import { TourCard } from '../components/TourCard'
 import { SectionHeading } from '../components/SectionHeading'
 import { Faq } from '../components/Faq'
 import { CtaBand } from '../components/CtaBand'
 import { Button } from '../components/Button'
+import { GalleryMarquee } from '../components/GalleryMarquee'
+import { galleryRows } from '../data/gallery'
+import { rowsFromManifest, type GalleryManifest } from '../lib/gallery-manifest'
 import { images } from '../data/images'
 import { additionalServices, tours, type TourCategory } from '../data/tours'
 import { practicalFaq } from '../data/faq'
@@ -32,6 +35,20 @@ export function Tours() {
     ],
   })
   const [filter, setFilter] = useState<Filter>('all')
+  // Galerie : version du dépôt au prérendu, puis celle de l’admin (Netlify Blobs) une fois chargée.
+  const [gallery, setGallery] = useState(galleryRows)
+  useEffect(() => {
+    let cancelled = false
+    fetch('/api/gallery', { headers: { Accept: 'application/json' } })
+      .then((r) => (r.ok && r.headers.get('content-type')?.includes('json') ? (r.json() as Promise<GalleryManifest>) : null))
+      .then((m) => {
+        if (!cancelled && m?.items?.length) setGallery(rowsFromManifest(m))
+      })
+      .catch(() => {})
+    return () => {
+      cancelled = true
+    }
+  }, [])
   const visible = filter === 'all' ? tours : tours.filter((t) => t.category === filter)
 
   return (
@@ -83,6 +100,24 @@ export function Tours() {
               <TourCard key={tour.slug} tour={tour} index={i} />
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="overflow-hidden bg-paper py-20 lg:py-28" aria-labelledby="gallery-title">
+        <div className="wrap">
+          <SectionHeading
+            eyebrow="Gallery"
+            size="md"
+            title={
+              <span id="gallery-title">
+                Moments from our tours, <em className="font-display-italic">shared by our guests</em>
+              </span>
+            }
+            text="Camel rides on the Atlantic, mint tea above the sea, the ramparts of Asilah and the workshops of the medina: a few days with our guests, as they lived them."
+          />
+        </div>
+        <div className="mt-12">
+          <GalleryMarquee rows={gallery} />
         </div>
       </section>
 
