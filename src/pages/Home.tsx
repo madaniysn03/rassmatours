@@ -24,7 +24,7 @@ const pillars = [
   {
     icon: PinIcon,
     title: 'Local guides',
-    text: 'Our guides are from Tangier. They know every corner and every story of the city and its region, and they share it as hosts, not as readers of a script.',
+    text: 'Our guides are local professionals. They know every corner and every story of the places you visit, and they share it as hosts, not as readers of a script.',
   },
   {
     icon: UsersIcon,

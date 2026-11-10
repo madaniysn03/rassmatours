@@ -27,7 +27,7 @@ export const siteConfig = {
     phoneDisplay: '+212 658-313411',
     phoneE164: '+212658313411',
     whatsappNumber: '212658313411',
-    email: 'tangierbyguide@gmail.com',
+    email: 'rassmatours@gmail.com',
     city: 'Tangier',
     country: 'Morocco',
     /** Horaires publiés sur la page Contact du site existant. */
