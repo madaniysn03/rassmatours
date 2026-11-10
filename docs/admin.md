@@ -4,6 +4,12 @@ Espace privé pour le client : lire les messages du formulaire de contact et gé
 Il repose sur des **Netlify Functions** (`netlify/functions/`) et **Netlify Blobs** (stockage clé-valeur fourni
 par Netlify, sans base de données à gérer). Il ne fonctionne donc que sur Netlify, ou en local avec `netlify dev`.
 
+## Mot de passe de test
+
+Tant que `ADMIN_PASSWORD` n'est pas défini sur Netlify, le mot de passe est **`admin1234`** (constante `TEST_PASSWORD`
+dans `netlify/lib/server.ts`). Ce n'est pas sécurisé (le mot de passe est dans le dépôt) : à remplacer avant de
+donner l'accès au client, en définissant `ADMIN_PASSWORD` (prioritaire) ou en vidant `TEST_PASSWORD`.
+
 ## Mise en ligne (une fois)
 
 1. Netlify > Site configuration > Environment variables, ajouter :

@@ -2,7 +2,8 @@
  * Outils communs aux Netlify Functions : réponses JSON, session admin signée, stockage Netlify Blobs.
  *
  * Variables d'environnement (Netlify > Site configuration > Environment variables) :
- * - ADMIN_PASSWORD (obligatoire) : mot de passe de /admin/.
+ * - ADMIN_PASSWORD : mot de passe de /admin/. À défaut, mot de passe de TEST `admin1234` (voir TEST_PASSWORD) :
+ *   à remplacer par une vraie variable d'environnement avant d'ouvrir l'admin au client.
  * - ADMIN_SESSION_SECRET (recommandé) : clé de signature des sessions ; à défaut, dérivée du mot de passe.
  */
 import { createHash, createHmac, randomBytes, timingSafeEqual } from 'node:crypto'
@@ -27,13 +28,20 @@ export const newId = () => `${Date.now().toString(36)}-${randomBytes(4).toString
 
 const env = (key: string) => process.env[key] ?? ''
 
+/**
+ * Mot de passe de test utilisé tant que ADMIN_PASSWORD n'est pas défini sur Netlify.
+ * NON SÉCURISÉ (visible dans le dépôt) : définir ADMIN_PASSWORD, ou mettre '' ici pour désactiver ce repli.
+ */
+const TEST_PASSWORD = 'admin1234'
+const adminPassword = () => env('ADMIN_PASSWORD') || TEST_PASSWORD
+
 // --- Session admin -------------------------------------------------------------------------------
 
 const COOKIE = 'rt_admin'
 const SESSION_HOURS = 12
 
 const secret = () => {
-  const s = env('ADMIN_SESSION_SECRET') || env('ADMIN_PASSWORD')
+  const s = env('ADMIN_SESSION_SECRET') || adminPassword()
   return createHash('sha256').update(`rassma-admin:${s}`).digest()
 }
 const sign = (payload: string) => createHmac('sha256', secret()).update(payload).digest('base64url')
@@ -44,9 +52,9 @@ const safeEqual = (a: string, b: string) => {
   return timingSafeEqual(ha, hb)
 }
 
-export const adminConfigured = () => env('ADMIN_PASSWORD').length >= 8
+export const adminConfigured = () => adminPassword().length >= 8
 
-export const checkPassword = (password: string) => adminConfigured() && safeEqual(password, env('ADMIN_PASSWORD'))
+export const checkPassword = (password: string) => adminConfigured() && safeEqual(password, adminPassword())
 
 export function sessionCookie(req: Request) {
   const exp = Date.now() + SESSION_HOURS * 3600_000
