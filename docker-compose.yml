@@ -1,0 +1,37 @@
+# Site + API Rassma Tours en deux conteneurs.
+#   cp backend-api/.env.example backend-api/.env   # renseigner ADMIN_PASSWORD et ADMIN_SESSION_SECRET
+#   docker compose up -d --build                   # site sur http://localhost:8080
+# En production, mettre un proxy HTTPS devant le port 8080 (Caddy, Traefik, nginx + certbot).
+services:
+  api:
+    build:
+      context: .
+      dockerfile: backend-api/Dockerfile
+    env_file: backend-api/.env
+    environment:
+      HOST: 0.0.0.0
+      PORT: 3001
+      DATA_DIR: /data
+      TRUST_PROXY: 1
+      FRONTEND_DIR: ""
+    volumes:
+      - rassmatours-data:/data
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        VITE_SITE_URL: https://rassmatours.com
+        VITE_GA4_ID: ""
+    environment:
+      API_UPSTREAM: http://api:3001
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  rassmatours-data:

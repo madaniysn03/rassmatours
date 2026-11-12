@@ -29,7 +29,15 @@ export const config = {
   adminPassword: str('ADMIN_PASSWORD') || TEST_PASSWORD,
   usingTestPassword: !str('ADMIN_PASSWORD'),
   sessionSecret: str('ADMIN_SESSION_SECRET'),
+  /** PostgreSQL (ex. postgres://user:pass@host:5432/db). Vide : stockage en fichiers dans DATA_DIR. */
+  databaseUrl: str('DATABASE_URL'),
+  databaseSsl: str('DATABASE_SSL') === '1' || str('DATABASE_SSL') === 'true',
   dataDir: resolvePath(str('DATA_DIR', './data')),
+  /** Origines autorisées à appeler l'API depuis le navigateur (site sur un autre domaine que l'API), séparées par des virgules. */
+  allowedOrigins: str('ALLOWED_ORIGINS')
+    .split(',')
+    .map((o) => o.trim().replace(/\/$/, ''))
+    .filter(Boolean),
   frontendDir: resolvePath(str('FRONTEND_DIR')),
   trustProxy: str('TRUST_PROXY') === '1' || str('TRUST_PROXY') === 'true',
   inquiryRateLimit: num('INQUIRY_RATE_LIMIT', 5),

@@ -32,7 +32,7 @@ before(async () => {
   base = `http://127.0.0.1:${port}`
   server = spawn(process.execPath, ['--import', 'tsx', 'src/server.ts'], {
     cwd: root,
-    env: { ...process.env, PORT: String(port), HOST: '127.0.0.1', DATA_DIR: dataDir, ADMIN_PASSWORD: PASSWORD, ADMIN_SESSION_SECRET: 'secret-for-tests', FRONTEND_DIR: '', INQUIRY_RATE_LIMIT: '3' },
+    env: { ...process.env, PORT: String(port), HOST: '127.0.0.1', DATA_DIR: dataDir, ADMIN_PASSWORD: PASSWORD, ADMIN_SESSION_SECRET: 'secret-for-tests', FRONTEND_DIR: '', INQUIRY_RATE_LIMIT: '3', DATABASE_URL: process.env.TEST_DATABASE_URL ?? '', ALLOWED_ORIGINS: 'https://rassmatours.com' },
     stdio: ['ignore', 'pipe', 'pipe'],
   })
   await new Promise((ok, ko) => {
@@ -54,6 +54,19 @@ const json = (body) => ({ method: 'POST', headers: { 'Content-Type': 'applicatio
 test('health', async () => {
   assert.deepEqual(await (await api('/api/health')).json(), { ok: true })
   assert.equal((await api('/api/nope')).status, 404)
+})
+
+test('CORS for the site on another domain', async () => {
+  const pre = await fetch(base + '/api/admin/messages', {
+    method: 'OPTIONS',
+    headers: { Origin: 'https://rassmatours.com', 'Access-Control-Request-Method': 'PATCH', 'Access-Control-Request-Headers': 'content-type,x-admin-request' },
+  })
+  assert.equal(pre.headers.get('access-control-allow-origin'), 'https://rassmatours.com')
+  assert.equal(pre.headers.get('access-control-allow-credentials'), 'true')
+  assert.match(pre.headers.get('access-control-allow-headers') ?? '', /x-admin-request/i)
+  const other = await fetch(base + '/api/gallery', { headers: { Origin: 'https://evil.example' } })
+  assert.equal(other.headers.get('access-control-allow-origin'), null)
+  assert.equal(other.headers.get('cross-origin-resource-policy'), 'same-site')
 })
 
 test('contact form', async () => {

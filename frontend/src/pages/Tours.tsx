@@ -8,6 +8,7 @@ import { Button } from '../components/Button'
 import { GalleryMarquee } from '../components/GalleryMarquee'
 import { galleryRows } from '../data/gallery'
 import { rowsFromManifest, type GalleryManifest } from '../lib/gallery-manifest'
+import { apiUrl } from '../lib/api'
 import { images } from '../data/images'
 import { additionalServices, tours, type TourCategory } from '../data/tours'
 import { practicalFaq } from '../data/faq'
@@ -39,7 +40,7 @@ export function Tours() {
   const [gallery, setGallery] = useState(galleryRows)
   useEffect(() => {
     let cancelled = false
-    fetch('/api/gallery', { headers: { Accept: 'application/json' } })
+    fetch(apiUrl('/api/gallery'), { headers: { Accept: 'application/json' } })
       .then((r) => (r.ok && r.headers.get('content-type')?.includes('json') ? (r.json() as Promise<GalleryManifest>) : null))
       .then((m) => {
         if (!cancelled && m?.items?.length) setGallery(rowsFromManifest(m))

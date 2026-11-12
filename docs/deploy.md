@@ -10,6 +10,28 @@ Le projet a deux parties :
 Prérequis : un serveur avec **Node.js 22 LTS** (20.19 minimum) et un accès SSH. Pas de base de données :
 les données sont des fichiers dans `backend-api/data/` (à sauvegarder).
 
+## Avec Docker (le plus simple)
+
+Deux images : `backend-api/Dockerfile` (API Node) et `frontend/Dockerfile` (site servi par nginx, qui relaie `/api/`
+vers l'API). `docker-compose.yml` les relie, avec un volume pour les données.
+
+```bash
+cp backend-api/.env.example backend-api/.env   # ADMIN_PASSWORD, ADMIN_SESSION_SECRET
+nano docker-compose.yml                        # VITE_SITE_URL (et VITE_GA4_ID) dans web > build > args
+docker compose up -d --build                   # site + API sur http://<serveur>:8080
+```
+
+- HTTPS : un proxy devant le port 8080 (Caddy : `rassmatours.com { reverse_proxy localhost:8080 }`, ou Traefik,
+  ou nginx + certbot). Les en-têtes `X-Forwarded-*` sont transmis jusqu'à l'API.
+- Données : volume `rassmatours-data` (messages, galerie, photos). Sauvegarde :
+  `docker run --rm -v rassmatours_rassmatours-data:/data -v $PWD:/backup alpine tar czf /backup/data.tgz -C /data .`
+- Mise à jour : `git pull && docker compose up -d --build`. Les variables `VITE_*` sont figées dans l'image du site :
+  changer de domaine demande de reconstruire `web`.
+- Sans compose : voir les commandes `docker build` / `docker run` en tête de chaque Dockerfile (les deux conteneurs
+  doivent partager un réseau Docker, `API_UPSTREAM` pointe vers le nom du conteneur API).
+
+## Sans Docker
+
 ## 1. Installer et construire
 
 ```bash

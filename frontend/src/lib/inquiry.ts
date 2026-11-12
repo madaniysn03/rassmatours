@@ -3,6 +3,8 @@
  * et envoi HTTP : par défaut vers /api/inquiry (backend-api, messages lisibles dans /admin/),
  * ou vers VITE_INQUIRY_ENDPOINT s'il est défini.
  */
+import { apiUrl } from './api'
+
 export type InquiryValues = {
   name: string
   email: string
@@ -66,7 +68,7 @@ export function formatInquiry(values: InquiryValues): string {
   return lines.join('\n')
 }
 
-export const inquiryEndpoint = (import.meta.env.VITE_INQUIRY_ENDPOINT as string | undefined) || '/api/inquiry'
+export const inquiryEndpoint = (import.meta.env.VITE_INQUIRY_ENDPOINT as string | undefined) || apiUrl('/api/inquiry')
 
 /** Envoi HTTP si un point de terminaison est configuré. Lève une erreur sinon ou en cas d’échec. */
 export async function submitInquiry(values: InquiryValues): Promise<void> {

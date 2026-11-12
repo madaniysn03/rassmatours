@@ -4,6 +4,7 @@ import { Button } from '../components/Button'
 import { adminApi, ApiError, prepareImage, type AdminMessage } from '../lib/admin-api'
 import type { ManifestItem } from '../lib/gallery-manifest'
 import { useHead } from '../lib/head'
+import { apiUrl } from '../lib/api'
 
 type Session = 'loading' | 'signed-out' | 'signed-in' | 'unavailable' | 'not-configured'
 
@@ -325,9 +326,9 @@ function Gallery({ onAuthError }: { onAuthError: (e: unknown) => void }) {
           <li key={m.id} className="flex flex-col overflow-hidden rounded-2xl bg-paper shadow-card">
             <div className="relative aspect-[4/3] bg-sand">
               {m.kind === 'video' ? (
-                <video src={m.src} poster={m.poster} muted playsInline controls preload="none" className="h-full w-full object-cover" />
+                <video src={apiUrl(m.src)} poster={m.poster} muted playsInline controls preload="none" className="h-full w-full object-cover" />
               ) : (
-                <img src={m.small ?? m.src} alt="" loading="lazy" className="h-full w-full object-cover" />
+                <img src={apiUrl(m.small ?? m.src)} alt="" loading="lazy" className="h-full w-full object-cover" />
               )}
               <span className="absolute left-3 top-3 rounded-full bg-paper/90 px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.14em]">
                 {m.kind === 'video' ? 'Video' : m.source === 'upload' ? 'Uploaded' : 'Photo'} · #{i + 1}

@@ -1,5 +1,6 @@
 /** Appels de /admin/ vers backend-api (cookie de session HttpOnly, en-tête anti-CSRF). */
 import { defaultManifest, type GalleryManifest } from './gallery-manifest'
+import { apiUrl } from './api'
 
 export type AdminMessage = {
   id: string
@@ -27,7 +28,8 @@ async function call<T>(path: string, init: RequestInit = {}): Promise<T> {
   headers.set('Accept', 'application/json')
   if (init.method && init.method !== 'GET') headers.set('X-Admin-Request', '1')
   if (init.body && typeof init.body === 'string') headers.set('Content-Type', 'application/json')
-  const res = await fetch(path, { ...init, headers, credentials: 'same-origin' })
+  // credentials: include : le cookie de session suit aussi quand l'API est sur api.rassmatours.com.
+  const res = await fetch(apiUrl(path), { ...init, headers, credentials: 'include' })
   const isJson = res.headers.get('content-type')?.includes('json')
   const data = isJson ? await res.json() : null
   if (!res.ok) throw new ApiError(res.status, (data as { error?: string } | null)?.error ?? `Request failed (${res.status})`)

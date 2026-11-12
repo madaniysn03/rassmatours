@@ -5,6 +5,7 @@
  */
 import { galleryRows, type GalleryItem } from '../data/gallery'
 import type { ImageAsset } from '../data/images'
+import { apiUrl } from './api'
 
 export type ManifestItem = {
   id: string
@@ -48,7 +49,7 @@ export function rowsFromManifest(manifest: GalleryManifest): GalleryItem[][] {
       const image: ImageAsset = { src: m.src, src900: m.src, alt: m.alt, width: m.width, height: m.height, credit: 'Rassma Tours' }
       rows[m.row].push({ kind: 'image', image })
     } else {
-      rows[m.row].push({ kind: 'upload', id: m.id, src: m.src, small: m.small ?? m.src, alt: m.alt, width: m.width, height: m.height })
+      rows[m.row].push({ kind: 'upload', id: m.id, src: apiUrl(m.src), small: apiUrl(m.small ?? m.src), alt: m.alt, width: m.width, height: m.height })
     }
   }
   // Une rangée vide casserait la boucle : on rééquilibre.

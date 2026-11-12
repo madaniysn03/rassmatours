@@ -1,0 +1,13 @@
+# Contexte Docker : seulement le code nécessaire, jamais les secrets ni les données locales.
+**/node_modules
+**/dist
+**/dist-ssr
+**/.env
+**/.env.*
+!**/.env.example
+backend-api/data
+.git
+.claude
+.DS_Store
+docs
+research
