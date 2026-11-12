@@ -10,6 +10,28 @@ Le projet a deux parties :
 Prérequis : un serveur avec **Node.js 22 LTS** (20.19 minimum) et un accès SSH. Pas de base de données :
 les données sont des fichiers dans `backend-api/data/` (à sauvegarder).
 
+## Production actuelle : Dokploy (dash.bpxdev.me)
+
+Projet **rassmatours**, environnement **production**, trois services séparés :
+
+| Service | Type | Source | Domaine | Port |
+|---|---|---|---|---|
+| `database` | PostgreSQL 16 | image `postgres:16-alpine` | aucun (réseau interne) | 5432 |
+| `backend-api` | Application | GitHub `main`, `backend-api/Dockerfile` (contexte `.`) | https://api.rassmatours.com | 3001 |
+| `frontend` | Application | GitHub `main`, `frontend/Dockerfile` (contexte `.`) | https://rassmatours.com, https://www.rassmatours.com | 80 |
+
+- **Variables du backend** (Dokploy > backend-api > Environment) : `DATABASE_URL` (vers le service `database`),
+  `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`, `ALLOWED_ORIGINS=https://rassmatours.com,https://www.rassmatours.com`,
+  `TRUST_PROXY=1`, `HOST=0.0.0.0`, `PORT=3001`. Le mot de passe de l'admin se lit et se change ici (puis Redeploy).
+- **Build args du frontend** (Dokploy > frontend > Environment > Build-time) : `VITE_SITE_URL=https://rassmatours.com`,
+  `VITE_API_URL=https://api.rassmatours.com`, `VITE_GA4_ID` (vide pour l'instant). Les modifier demande un Redeploy.
+- **Certificats** : Let's Encrypt via Traefik ; DNS chez Cloudflare (proxy actif), SSL Cloudflare en « Full » ou « Full (strict) ».
+- **Tables** créées automatiquement au démarrage de l'API : `inquiries`, `gallery_manifest`, `gallery_images`.
+- **Mettre à jour le site** : pousser sur `main`, puis Dokploy > service > **Deploy** (pas de déploiement automatique :
+  le dépôt est branché en « Git » sans webhook ; pour l'automatiser, copier l'URL de webhook du service dans
+  GitHub > Settings > Webhooks).
+- **Sauvegardes** : Dokploy > database > Backups (destination S3 à configurer dans Settings > Destinations).
+
 ## Avec Docker (le plus simple)
 
 Deux images : `backend-api/Dockerfile` (API Node) et `frontend/Dockerfile` (site servi par nginx, qui relaie `/api/`
