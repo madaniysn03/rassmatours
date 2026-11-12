@@ -2,35 +2,31 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "rassmatours-dev",
-      "runtimeExecutable": "npm",
+      "name": "rassmatours-api",
+      "runtimeExecutable": "bash",
       "runtimeArgs": [
-        "run",
-        "dev",
-        "--",
-        "--port",
-        "5173",
-        "--strictPort"
+        "-c",
+        "export PATH=\"$HOME/.nvm/versions/node/v22.23.1/bin:$PATH\"; exec npm run dev -w backend-api"
+      ],
+      "port": 3001
+    },
+    {
+      "name": "rassmatours-dev",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "export PATH=\"$HOME/.nvm/versions/node/v22.23.1/bin:$PATH\"; exec npm run dev -w frontend -- --port 5173 --strictPort"
       ],
       "port": 5173
     },
     {
-      "name": "rassmatours-preview",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "run",
-        "preview"
-      ],
-      "port": 5175
-    },
-    {
-      "name": "rassmatours-netlify",
+      "name": "rassmatours-prod",
       "runtimeExecutable": "bash",
       "runtimeArgs": [
         "-c",
-        "export PATH=\"$HOME/.nvm/versions/node/v22.23.1/bin:$PATH\"; exec npx -y netlify-cli@27.17.0 dev --offline"
+        "export PATH=\"$HOME/.nvm/versions/node/v22.23.1/bin:$PATH\"; cd backend-api && PORT=3002 FRONTEND_DIR=../frontend/dist exec npm start"
       ],
-      "port": 8888
+      "port": 3002
     }
   ]
 }

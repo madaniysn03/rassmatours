@@ -1,34 +1,20 @@
 {
   "name": "rassmatours",
   "private": true,
-  "version": "0.1.0",
-  "type": "module",
+  "description": "Site Rassma Tours : frontend (Vite + React, prérendu statique) et backend-api (Node.js).",
+  "workspaces": [
+    "frontend",
+    "backend-api"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
-    "lint": "oxlint",
-    "preview": "node scripts/serve.mjs 5175",
-    "test": "npm run build && node scripts/seo-audit.mjs"
-  },
-  "dependencies": {
-    "@netlify/blobs": "^11.1.9",
-    "react": "^19.3.1",
-    "react-dom": "^19.3.1",
-    "react-router": "^7.9.0"
-  },
-  "devDependencies": {
-    "@netlify/functions": "^6.1.1",
-    "@tailwindcss/vite": "^4.3.3",
-    "@types/node": "^24.19.2",
-    "@types/react": "^19.3.0",
-    "@types/react-dom": "^19.3.0",
-    "@vitejs/plugin-react": "^6.1.2",
-    "oxlint": "^1.88.0",
-    "tailwindcss": "^4.3.3",
-    "typescript": "~6.0.3",
-    "vite": "^8.3.4"
+    "dev": "npm run dev:api & npm run dev:web; wait",
+    "dev:web": "npm run dev -w frontend",
+    "dev:api": "npm run dev -w backend-api",
+    "build": "npm run build -w frontend && npm run build -w backend-api",
+    "start": "npm run start -w backend-api",
+    "check": "npm run typecheck -w backend-api && npm run lint -w frontend && npm run test -w frontend && npm run test -w backend-api"
   },
   "engines": {
-    "node": "^20.19.0 || >=22.12.0"
+    "node": ">=20.19.0"
   }
 }

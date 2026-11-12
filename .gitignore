@@ -27,5 +27,6 @@ dist-ssr
 .env
 .env.local
 
-# Local Netlify folder
-.netlify
+# Backend : données (messages, galerie) et build
+backend-api/data
+backend-api/dist
