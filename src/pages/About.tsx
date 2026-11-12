@@ -120,7 +120,7 @@ export function About() {
       <section className="py-24 lg:py-32" aria-labelledby="how-title">
         <div className="wrap grid gap-14 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-5">
-            <SectionHeading eyebrow="How we work" title={<span id="how-title">What to expect from your private tour guide in Tangier</span>} text="The practical side of hospitality: the things that make a day easy." />
+            <SectionHeading eyebrow="How we work" title={<span id="how-title">What to expect from your private tour in Tangier</span>} text="The practical side of hospitality: the things that make a day easy." />
             <div className="reveal mt-9">
               <Button to="/contact/" variant="midnight">
                 Get in touch

@@ -46,6 +46,9 @@ export const images = {
   grandSoccoGate: landscape('tangier/grand-socco-gate', 'People walking through the white horseshoe gate between the Grand Socco and the medina', 'theemanofoth'),
   medinaGateStreet: landscape('tangier/medina-gate-street', 'A white arch framing a busy street at the edge of the Tangier medina', 'theemanofoth'),
   medinaLane: landscape('tangier/medina-lane', 'A narrow whitewashed lane in the medina leading towards bright sunlight', 'theemanofoth'),
+  // Photo originale du client (Walking Tour) : minaret de la mosquée Sidi Bou Abib, près du Grand Socco.
+  minaretGrandSocco: landscape('tangier/minaret-grand-socco', 'The tiled minaret of the Sidi Bou Abib mosque near the Grand Socco, with the Bay of Tangier behind', 'Rassma Tours'),
+  minaretGrandSoccoPortrait: portrait('tangier/minaret-grand-socco-portrait', 'The tiled minaret of the Sidi Bou Abib mosque near the Grand Socco, with the Bay of Tangier behind', 'Rassma Tours'),
   kasbahArch: portrait('tangier/kasbah-arch', 'An arched passage in the Kasbah with white walls and green doors', 'sediri_ayoub'),
   kasbahLanePlant: landscape('tangier/kasbah-lane-plant', 'A quiet stone lane in the old town with a potted plant and lanterns', 'kyllik'),
   marinaSunset: landscape('tangier/marina-sunset', 'Sailing boats moored in the Tangier marina at sunset', 'theemanofoth'),

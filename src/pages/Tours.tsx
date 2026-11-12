@@ -62,7 +62,7 @@ export function Tours() {
             Tangier tours and day trips, <em className="font-display-italic">days worth remembering</em>
           </>
         }
-        text="Five private guided tours and day trips from Tangier, each led by a local guide and shaped around you."
+        text="Five private tours and day trips from Tangier, each shaped around you."
       />
 
       <section className="py-20 lg:py-28" aria-labelledby="list-title">
